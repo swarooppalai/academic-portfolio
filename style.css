@@ -1354,6 +1354,187 @@ body.dark-mode .leaflet-control-attribution a {
     color: #000000 !important;
 }
 
+/* ─── Floating CV Modal ─── */
+body.modal-open {
+    overflow: hidden;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(14, 12, 10, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    cursor: pointer;
+}
+
+.modal-dialog {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    height: 88vh;
+    max-height: 920px;
+    background: var(--surface-paper);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--surface-grid);
+    transform: translateY(16px) scale(0.98);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+}
+
+.modal-overlay.active .modal-dialog {
+    transform: translateY(0) scale(1);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: var(--surface-cream);
+    border-bottom: 1px solid var(--border-subtle);
+    position: relative;
+}
+
+.modal-header::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+}
+
+.modal-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.modal-badge {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+}
+
+.modal-title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-action-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--surface-recessed);
+    border: 1px solid var(--surface-grid);
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.modal-action-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-wash);
+}
+
+.modal-action-link.download-link {
+    background: var(--accent);
+    color: #FFFFFF !important;
+    border-color: var(--accent);
+}
+
+.modal-action-link.download-link:hover {
+    background: var(--accent-hover);
+}
+
+.modal-close-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--surface-recessed);
+    border: 1px solid var(--surface-grid);
+    border-radius: 3px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    padding: 0;
+}
+
+.modal-close-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-wash);
+}
+
+.modal-body {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #323639;
+    position: relative;
+}
+
+.cv-pdf-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+.pdf-fallback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 30px;
+    text-align: center;
+    color: #FFFFFF;
+    gap: 16px;
+    font-family: var(--font-ui);
+}
+
 /* ─── Footer ─── */
 .footer {
     padding: 44px 0 36px;
@@ -1560,7 +1741,29 @@ body.dark-mode .leaflet-control-attribution a {
     .map-action-buttons .map-directions-btn {
         justify-content: center;
         min-height: 40px;
-        padding: 8px 10px;
+    /* Floating CV Modal Mobile */
+    .modal-overlay {
+        padding: 0;
+    }
+    .modal-dialog {
+        height: 100dvh;
+        max-height: 100dvh;
+        width: 100vw;
+        max-width: 100vw;
+        border-radius: 0;
+        border: none;
+    }
+    .modal-header {
+        padding: 12px 14px;
+    }
+    .modal-title {
+        font-size: 0.925rem;
+    }
+    .modal-action-link span {
+        display: none;
+    }
+    .modal-action-link {
+        padding: 6px 8px;
     }
 }
 

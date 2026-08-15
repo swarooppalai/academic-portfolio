@@ -189,6 +189,45 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // ─── Floating CV Modal ───
+    const openCvBtn = document.getElementById('openCvBtn');
+    const cvModal = document.getElementById('cvModal');
+    const closeCvModal = document.getElementById('closeCvModal');
+    const modalBackdrop = document.getElementById('modalBackdrop');
+
+    const openModal = () => {
+        if (cvModal) {
+            cvModal.classList.add('active');
+            cvModal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+            if (closeCvModal) closeCvModal.focus();
+        }
+    };
+
+    const closeModal = () => {
+        if (cvModal) {
+            cvModal.classList.remove('active');
+            cvModal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+            if (openCvBtn) openCvBtn.focus();
+        }
+    };
+
+    if (openCvBtn) {
+        openCvBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openModal();
+        });
+    }
+    if (closeCvModal) closeCvModal.addEventListener('click', closeModal);
+    if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && cvModal && cvModal.classList.contains('active')) {
+            closeModal();
+        }
+    });
 });
 
 

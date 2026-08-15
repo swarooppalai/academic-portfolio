@@ -55,14 +55,16 @@
             <span class="tag">Metasurfaces</span>
         </div>
         <div class="hero-actions animate-in delay-5">
-            <a href="Swaroop_Palai_Academic_CV.pdf" target="_blank" download="Swaroop_Palai_Academic_CV.pdf" class="btn btn-primary" title="Download Swaroop Kumar Palai Academic CV (PDF)">
+            <button id="openCvBtn" class="btn btn-primary" title="Open and preview Academic CV">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle;">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
-                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
                 </svg>
-                <span>Download CV</span>
-            </a>
+                <span>Curriculum Vitae</span>
+            </button>
             <a href="#contact" class="btn btn-outline">Get in Touch</a>
         </div>
     </div>
@@ -770,7 +772,51 @@
     </div>
 </footer>
 
+<!-- ─── Floating CV Modal ─── -->
+<div id="cvModal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-header">
+            <div class="modal-title-group">
+                <span class="modal-badge">CURRICULUM VITAE</span>
+                <h3 id="cvModalTitle" class="modal-title">Swaroop Kumar Palai — Academic CV</h3>
+            </div>
+            <div class="modal-actions">
+                <a href="Swaroop_Palai_Academic_CV.pdf" download="Swaroop_Palai_Academic_CV.pdf" class="modal-action-link download-link" title="Download PDF copy">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span>Download</span>
+                </a>
+                <a href="Swaroop_Palai_Academic_CV.pdf" target="_blank" rel="noopener" class="modal-action-link" title="Open in new tab">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </a>
+                <button class="modal-close-btn" id="closeCvModal" aria-label="Close CV preview">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <iframe src="Swaroop_Palai_Academic_CV.pdf#toolbar=1&navpanes=0" class="cv-pdf-frame" title="Academic CV Viewer">
+                <div class="pdf-fallback">
+                    <p>PDF preview is not supported directly in this browser.</p>
+                    <a href="Swaroop_Palai_Academic_CV.pdf" target="_blank" class="btn btn-primary">Open or Download PDF</a>
+                </div>
+            </iframe>
+        </div>
+    </div>
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="script.js?v=3"></script>
+<script src="script.js?v=4"></script>
 </body>
 </html>
