@@ -190,97 +190,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ─── Floating CV Modal & Native HTML5 Canvas Renderer ───
+    // ─── Floating CV Modal ───
     const openCvBtn = document.getElementById('openCvBtn');
     const cvModal = document.getElementById('cvModal');
     const closeCvModal = document.getElementById('closeCvModal');
     const modalBackdrop = document.getElementById('modalBackdrop');
-    const pdfViewer = document.getElementById('pdfViewer');
     const pdfScrollContainer = document.getElementById('pdfScrollContainer');
-
-    let pdfLoaded = false;
-    let isRendering = false;
-
-    // Configure PDF.js worker
-    if (typeof pdfjsLib !== 'undefined') {
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-    }
-
-    const renderPdfDocument = async (url) => {
-        if (!pdfViewer || isRendering) return;
-        isRendering = true;
-        pdfViewer.innerHTML = `
-            <div class="pdf-loading-spinner">
-                <div class="spinner"></div>
-                <p>Loading Curriculum Vitae...</p>
-            </div>
-        `;
-
-        try {
-            if (typeof pdfjsLib === 'undefined') {
-                throw new Error('PDF.js library not loaded');
-            }
-
-            const loadingTask = pdfjsLib.getDocument(url);
-            const pdfDoc = await loadingTask.promise;
-            pdfViewer.innerHTML = '';
-
-            const containerWidth = Math.max((pdfScrollContainer ? pdfScrollContainer.clientWidth : window.innerWidth) - 32, 280);
-
-            for (let pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
-                const page = await pdfDoc.getPage(pageNum);
-                
-                // Calculate scale to fit container width nicely
-                const unscaledViewport = page.getViewport({ scale: 1 });
-                const baseScale = Math.min(containerWidth / unscaledViewport.width, 1.4);
-                
-                // Use devicePixelRatio for super crisp Retina rendering
-                const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
-                const viewport = page.getViewport({ scale: baseScale * dpr });
-
-                const wrapper = document.createElement('div');
-                wrapper.className = 'pdf-page-wrapper';
-
-                const canvas = document.createElement('canvas');
-                canvas.className = 'pdf-page-canvas';
-                canvas.width = viewport.width;
-                canvas.height = viewport.height;
-                canvas.style.width = `${viewport.width / dpr}px`;
-                canvas.style.height = `${viewport.height / dpr}px`;
-
-                wrapper.appendChild(canvas);
-                pdfViewer.appendChild(wrapper);
-
-                const ctx = canvas.getContext('2d');
-                await page.render({
-                    canvasContext: ctx,
-                    viewport: viewport
-                }).promise;
-            }
-            pdfLoaded = true;
-        } catch (err) {
-            console.error('PDF.js rendering error:', err);
-            pdfViewer.innerHTML = `
-                <div class="pdf-fallback">
-                    <p>Unable to preview PDF directly in this browser.</p>
-                    <a href="${url}" download="Swaroop_Palai_Academic_CV.pdf" class="btn btn-primary">Download PDF Document</a>
-                </div>
-            `;
-        } finally {
-            isRendering = false;
-        }
-    };
 
     const openModal = () => {
         if (cvModal) {
             cvModal.classList.add('active');
             cvModal.setAttribute('aria-hidden', 'false');
             document.body.classList.add('modal-open');
+            if (pdfScrollContainer) pdfScrollContainer.scrollTop = 0;
             if (closeCvModal) closeCvModal.focus();
-
-            if (!pdfLoaded) {
-                renderPdfDocument('Swaroop_Palai_Academic_CV.pdf');
-            }
         }
     };
 
@@ -305,17 +228,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && cvModal && cvModal.classList.contains('active')) {
             closeModal();
-        }
-    });
-
-    // Re-render on orientation change/window resize if modal is open
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        if (cvModal && cvModal.classList.contains('active') && pdfLoaded) {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                renderPdfDocument('Swaroop_Palai_Academic_CV.pdf');
-            }, 300);
         }
     });
 });
