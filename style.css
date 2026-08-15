@@ -542,11 +542,31 @@ a:hover {
     border-radius: 3px;
     padding: 20px 14px;
     text-align: center;
-    transition: border-color var(--transition-fast), transform var(--transition-fast);
+    text-decoration: none;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-paper);
+    cursor: pointer;
+    transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+}
+.stat-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease-out;
 }
 .stat-card:hover {
     border-color: var(--accent);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+}
+.stat-card:hover::before {
+    transform: scaleX(1);
 }
 .stat-number {
     font-family: var(--font-display);
