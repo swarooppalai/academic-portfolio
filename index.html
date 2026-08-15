@@ -805,18 +805,19 @@
                 </button>
             </div>
         </div>
-        <div class="modal-body">
-            <iframe src="Swaroop_Palai_Academic_CV.pdf#toolbar=1&navpanes=0" class="cv-pdf-frame" title="Academic CV Viewer">
-                <div class="pdf-fallback">
-                    <p>PDF preview is not supported directly in this browser.</p>
-                    <a href="Swaroop_Palai_Academic_CV.pdf" target="_blank" class="btn btn-primary">Open or Download PDF</a>
+        <div class="modal-body" id="pdfScrollContainer">
+            <div id="pdfViewer" class="pdf-viewer-canvas-list">
+                <div class="pdf-loading-spinner">
+                    <div class="spinner"></div>
+                    <p>Loading Curriculum Vitae...</p>
                 </div>
-            </iframe>
+            </div>
         </div>
     </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="script.js?v=4"></script>
+<script src="script.js?v=5"></script>
 </body>
 </html>
