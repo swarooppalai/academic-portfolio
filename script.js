@@ -143,20 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const marker = L.marker(cemesCoords, { icon: wazeIcon }).addTo(map);
 
-        marker.bindPopup(`
-            <div class="map-popup-editorial">
-                <p class="popup-label">RESEARCH LAB · PLUS CODE: HFH7+J2</p>
-                <h4 class="popup-title">CEMES-CNRS · LPCNO</h4>
-                <p class="popup-address">29 Rue Jeanne Marvig, 31055 Toulouse</p>
-                <p class="popup-author">Swaroop Kumar Palai</p>
-            </div>
-        `, {
-            offset: [0, -14],
-            closeButton: false,
-            autoClose: false,
-            closeOnClick: false
-        }).openPopup();
-
         // Update map tiles on theme change
         window.updateMapTheme = (isDark) => {
             if (map && currentTileLayer) {
