@@ -3,42 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swaroop Kumar Palai — Post-Doctoral Researcher</title>
-    <meta name="description" content="Academic portfolio of Dr. Swaroop Kumar Palai, Post-Doctoral Researcher at CNRS and INSA Toulouse. Specializing in Quantum Optics, NV Centers, 2D Materials, and Nanophotonics.">
+    <title>Swaroop Kumar Palai — Quantum Optics &amp; Nanophotonics</title>
+    <meta name="description" content="Academic portfolio of Swaroop Kumar Palai, Post-Doctoral Researcher at CNRS and INSA Toulouse. Specializing in Quantum Optics, NV Centers, 2D Materials, and Nanophotonics.">
+    <link rel="icon" type="image/png" sizes="128x128" href="swaroop-favicon.png?v=2">
+    <link rel="icon" type="image/x-icon" href="favicon.ico?v=2">
+    <link rel="shortcut icon" href="favicon.ico?v=2">
+    <link rel="apple-touch-icon" href="swaroop-favicon.png?v=2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=IBM+Plex+Mono:ital,wght@0,400..600;1,400..600&family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<a href="#about" class="skip-to-content">Skip to content</a>
+
 <!-- ─── Navigation ─── -->
-<nav id="navbar">
-    <div class="nav-inner" style="justify-content: center;">
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-            <span></span><span></span><span></span>
+<nav id="navbar" aria-label="Main Navigation">
+    <div class="nav-inner">
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+            <span class="bar bar-1" aria-hidden="true"></span>
+            <span class="bar bar-2" aria-hidden="true"></span>
+            <span class="bar bar-3" aria-hidden="true"></span>
         </button>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#about">About</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#awards">Awards</a></li>
-            <li><a href="#talks">Talks</a></li>
-            <li><a href="#contact">Contact</a></li>
+        <ul class="nav-links" id="navLinks" role="menubar">
+            <li role="none"><a href="#about" role="menuitem">About</a></li>
+            <li role="none"><a href="#research" role="menuitem">Research</a></li>
+            <li role="none"><a href="#publications" role="menuitem">Publications</a></li>
+            <li role="none"><a href="#education" role="menuitem">Education</a></li>
+            <li role="none"><a href="#awards" role="menuitem">Awards</a></li>
+            <li role="none"><a href="#talks" role="menuitem">Talks</a></li>
+            <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
         </ul>
     </div>
 </nav>
 
 <!-- ─── Hero ─── -->
-<header id="hero">
-    <div class="hero-bg-grid"></div>
-    <div class="hero-content">
-        <img src="profile.jpg" alt="Swaroop Kumar Palai" class="hero-photo animate-in">
-        <p class="hero-greeting animate-in delay-1">Hello, I'm</p>
+<header id="hero" role="banner">
+    <div class="hero-content" id="heroCard" title="Click to toggle Dark / Light mode" tabindex="0" role="button" aria-label="Toggle Dark or Light theme">
+        <img src="swaroop-profile.jpg?v=2" alt="Swaroop Kumar Palai" class="hero-photo animate-in">
+        <p class="hero-greeting animate-in delay-1">POST-DOCTORAL RESEARCHER · CNRS &amp; INSA TOULOUSE</p>
         <h1 class="hero-name animate-in delay-2">Swaroop Kumar Palai</h1>
-        <p class="hero-title animate-in delay-3">Post-Doctoral Researcher</p>
-        <p class="hero-affiliation animate-in delay-4">CNRS &amp; INSA — Toulouse, France</p>
+        <p class="hero-title animate-in delay-3">Quantum Optics &amp; Nanophotonic Architectures</p>
+        <p class="hero-affiliation animate-in delay-4">Centre d'Élaboration de Matériaux et d'Etudes Structurales (CEMES) &amp; LPCNO — Toulouse, France</p>
         <div class="hero-tags animate-in delay-5">
             <span class="tag">Quantum Optics</span>
             <span class="tag">NV Centers</span>
@@ -51,16 +59,15 @@
             <a href="#contact" class="btn btn-outline">Get in Touch</a>
         </div>
     </div>
-    <div class="hero-scroll-indicator">
-        <span>Scroll</span>
-        <div class="scroll-line"></div>
-    </div>
 </header>
 
 <!-- ─── About ─── -->
 <section id="about" class="section">
     <div class="container">
-        <h2 class="section-title"><span class="section-number">01</span>About Me</h2>
+        <div class="section-header">
+            <p class="section-label">01 / ABOUT</p>
+            <h2 class="section-title">Research Profile &amp; Biography</h2>
+        </div>
         <div class="about-grid">
             <div class="about-text">
                 <p class="about-lead">I am an experimental physicist specializing in quantum optics and nanophotonics, currently working at the intersection of <strong>quantum emitters</strong> and <strong>nanoscale photonic architectures</strong>.</p>
@@ -69,7 +76,7 @@
             </div>
             <div class="about-stats">
                 <div class="stat-card">
-                    <span class="stat-number">9</span>
+                    <span class="stat-number">8</span>
                     <span class="stat-label">Publications</span>
                 </div>
                 <div class="stat-card">
@@ -78,7 +85,7 @@
                 </div>
                 <div class="stat-card">
                     <span class="stat-number">8+</span>
-                    <span class="stat-label">Talks & Posters</span>
+                    <span class="stat-label">Talks &amp; Posters</span>
                 </div>
                 <div class="stat-card">
                     <span class="stat-number">7+</span>
@@ -90,7 +97,7 @@
             <h3 class="subsection-title">Research Interests</h3>
             <div class="interest-chips">
                 <span class="chip">Quantum Optics</span>
-                <span class="chip">Nano & Microfabrication</span>
+                <span class="chip">Nano &amp; Microfabrication</span>
                 <span class="chip">Metrology</span>
                 <span class="chip">2D Materials</span>
                 <span class="chip">Optoelectronics</span>
@@ -105,7 +112,10 @@
 <!-- ─── Research Experience ─── -->
 <section id="research" class="section section-alt">
     <div class="container">
-        <h2 class="section-title"><span class="section-number">02</span>Research Experience</h2>
+        <div class="section-header">
+            <p class="section-label">02 / RESEARCH</p>
+            <h2 class="section-title">Research Experience &amp; Projects</h2>
+        </div>
 
         <!-- Post-Doc Projects -->
         <div class="experience-group">
@@ -322,19 +332,22 @@
 <!-- ─── Publications ─── -->
 <section id="publications" class="section">
     <div class="container">
-        <h2 class="section-title"><span class="section-number">03</span>Publications</h2>
+        <div class="section-header">
+            <p class="section-label">03 / PUBLICATIONS</p>
+            <h2 class="section-title">Publications &amp; Preprints</h2>
+        </div>
         <div class="pub-list">
 
             <!-- Published -->
             <div class="pub-category">
-                <h3 class="pub-category-title">Published</h3>
+                <h3 class="pub-category-title">Peer-Reviewed Journal Articles</h3>
             </div>
 
             <article class="pub-card">
                 <span class="pub-year">2026</span>
                 <div class="pub-content">
                     <h4 class="pub-title"><a href="https://doi.org/10.1021/acs.nanolett.5c06501" target="_blank" rel="noopener">Spin injection and emission helicity switching in a 2D perovskite/WSe₂ heterostructure</a></h4>
-                    <p class="pub-authors">Jasinski, J., Gucci, F., Brumme, T., <strong>Palai, S.</strong>, Genco, A… & Surrente, A.</p>
+                    <p class="pub-authors">Jasinski, J., Gucci, F., Brumme, T., <strong>Palai, S.</strong>, Genco, A… &amp; Surrente, A.</p>
                     <span class="pub-journal">Nano Letters</span>
                 </div>
             </article>
@@ -343,7 +356,7 @@
                 <span class="pub-year">2024</span>
                 <div class="pub-content">
                     <h4 class="pub-title"><a href="https://doi.org/10.1088/2053-1583/ad1ae8" target="_blank" rel="noopener">Control of the Valley Polarization of Monolayer WSe₂ by Dexter-like Coupling</a></h4>
-                    <p class="pub-authors">Jasinski, J., Thompson, J., <strong>Palai, S.</strong>, Smiertka, M.,… & Plochocka, P.</p>
+                    <p class="pub-authors">Jasinski, J., Thompson, J., <strong>Palai, S.</strong>, Smiertka, M.,… &amp; Plochocka, P.</p>
                     <span class="pub-journal">2D Materials</span>
                 </div>
             </article>
@@ -361,7 +374,7 @@
                 <span class="pub-year">2023</span>
                 <div class="pub-content">
                     <h4 class="pub-title"><a href="https://doi.org/10.1021/acs.nanolett.2c04719" target="_blank" rel="noopener">Approaching the Intrinsic Properties of Moiré Structures Using Atomic Force Microscopy (AFM) Ironing</a></h4>
-                    <p class="pub-authors"><strong>Palai, S. K.</strong>, Dyksik, M., Sokolowski, N… & Plochocka, P.</p>
+                    <p class="pub-authors"><strong>Palai, S. K.</strong>, Dyksik, M., Sokolowski, N… &amp; Plochocka, P.</p>
                     <span class="pub-journal">Nano Letters</span>
                 </div>
             </article>
@@ -370,21 +383,21 @@
                 <span class="pub-year">2023</span>
                 <div class="pub-content">
                     <h4 class="pub-title"><a href="https://doi.org/10.1088/2053-1583/acdbdb" target="_blank" rel="noopener">Twist-angle dependent dehybridization of momentum-indirect excitons in MoSe₂/MoS₂ heterostructures</a></h4>
-                    <p class="pub-authors">Sokołowski, N., <strong>Palai, S.</strong>, Dyksik, M., Posmyk, K., … & Plochocka, P.</p>
+                    <p class="pub-authors">Sokołowski, N., <strong>Palai, S.</strong>, Dyksik, M., Posmyk, K., … &amp; Plochocka, P.</p>
                     <span class="pub-journal">2D Materials</span>
                 </div>
             </article>
 
             <!-- Communicated / Under Preparation -->
             <div class="pub-category">
-                <h3 class="pub-category-title">Communicated & Under Preparation</h3>
+                <h3 class="pub-category-title">Communicated &amp; Under Preparation</h3>
             </div>
 
             <article class="pub-card pub-card--preprint">
                 <span class="pub-year status-comm">Comm.</span>
                 <div class="pub-content">
                     <h4 class="pub-title">Directional emission from nitrogen-vacancy centers deterministically coupled to inverse-designed silicon nanoantennas</h4>
-                    <p class="pub-authors"><strong>Palai, S. K.</strong>, Azéma, A., Müller, J., Hernandez, R., Agez, G., … Ressier, L., & Cuche, A.</p>
+                    <p class="pub-authors"><strong>Palai, S. K.</strong>, Azéma, A., Müller, J., Hernandez, R., Agez, G., … Ressier, L., &amp; Cuche, A.</p>
                     <span class="pub-journal">Communicated to Nanotechnology</span>
                 </div>
             </article>
@@ -393,7 +406,7 @@
                 <span class="pub-year status-comm">Comm.</span>
                 <div class="pub-content">
                     <h4 class="pub-title">Bimolecular momentum-dark exciton annihilation in atomically thin MoS₂</h4>
-                    <p class="pub-authors"><strong>Palai, S. K.</strong>, Lamsaadi, H., Katsipoulaki, E., … Cuche, A., Paillard, V., & Poumirol, J.-M.</p>
+                    <p class="pub-authors"><strong>Palai, S. K.</strong>, Lamsaadi, H., Katsipoulaki, E., … Cuche, A., Paillard, V., &amp; Poumirol, J.-M.</p>
                     <span class="pub-journal">Communicated to Applied Physics Letters</span>
                 </div>
             </article>
@@ -402,19 +415,11 @@
                 <span class="pub-year status-prep">Prep.</span>
                 <div class="pub-content">
                     <h4 class="pub-title">Probing spin-dark excitons via room-temperature photoluminescence in hBN-encapsulated monolayer MoS₂</h4>
-                    <p class="pub-authors">Lamsaadi, H., <strong>Palai, S. K.</strong>, Katsipoulaki, E., … Cuche, A., Paillard, V., & Poumirol, J.-M.</p>
+                    <p class="pub-authors">Lamsaadi, H., <strong>Palai, S. K.</strong>, Katsipoulaki, E., … Cuche, A., Paillard, V., &amp; Poumirol, J.-M.</p>
                     <span class="pub-journal">Manuscript under preparation</span>
                 </div>
             </article>
 
-            <article class="pub-card pub-card--preprint">
-                <span class="pub-year status-prep">Prep.</span>
-                <div class="pub-content">
-                    <h4 class="pub-title">Magneto transmission measurements in high magnetic field: Design and instrumentation of new flake probe</h4>
-                    <p class="pub-authors"><strong>Palai, S. K.</strong> et al.</p>
-                    <span class="pub-journal">Manuscript under preparation</span>
-                </div>
-            </article>
         </div>
     </div>
 </section>
@@ -422,27 +427,36 @@
 <!-- ─── Education ─── -->
 <section id="education" class="section section-alt">
     <div class="container">
-        <h2 class="section-title"><span class="section-number">04</span>Education</h2>
-        <div class="edu-grid">
-            <div class="edu-card">
-                <div class="edu-icon">🎓</div>
-                <h4>Doctoral Researcher in Material Science</h4>
-                <p class="edu-institution">CNRS-LNCMI, Paul Sabatier University Toulouse III</p>
+        <div class="section-header">
+            <p class="section-label">04 / EDUCATION</p>
+            <h2 class="section-title">Academic Background &amp; Expertise</h2>
+        </div>
+        <div class="edu-timeline">
+            <div class="edu-item">
+                <div class="edu-header">
+                    <span class="edu-badge">Doctorate</span>
+                    <span class="edu-date">2021 — 2024</span>
+                </div>
+                <h3 class="edu-degree">Doctor of Philosophy in Materials Science &amp; Nanophotonics</h3>
+                <p class="edu-institution">CNRS-LNCMI · Université Paul Sabatier Toulouse III</p>
                 <p class="edu-location">Toulouse, France</p>
-                <span class="edu-date">Sept. 2021 — Oct. 2024</span>
+                <p class="edu-focus">Pioneered AFM ironing to enhance optical properties of 2D semiconductor heterostructures; built cryogenic magneto-optical instrumentation (70T).</p>
             </div>
-            <div class="edu-card">
-                <div class="edu-icon">📐</div>
-                <h4>Integrated Bachelors-Masters in Physics & Astronomy</h4>
-                <p class="edu-institution">National Institute of Technology, Rourkela</p>
+            <div class="edu-item">
+                <div class="edu-header">
+                    <span class="edu-badge">Integrated BS-MS</span>
+                    <span class="edu-date">2014 — 2019</span>
+                </div>
+                <h3 class="edu-degree">Integrated Bachelor &amp; Master of Science in Physics &amp; Astronomy</h3>
+                <p class="edu-institution">National Institute of Technology (NIT), Rourkela</p>
                 <p class="edu-location">Rourkela, India</p>
-                <span class="edu-date">Apr. 2014 — May 2019</span>
+                <p class="edu-focus">Graduated with academic distinction; specialized in condensed matter physics, optical spectroscopy, and fluorescence dynamics.</p>
             </div>
         </div>
 
         <!-- Skills -->
         <div class="skills-section">
-            <h3 class="subsection-title">Skills & Expertise</h3>
+            <h3 class="subsection-title">Skills &amp; Methodologies</h3>
             <div class="skills-grid">
                 <div class="skill-group">
                     <h4 class="skill-group-title">Technical Skills</h4>
@@ -460,7 +474,7 @@
                     </div>
                 </div>
                 <div class="skill-group">
-                    <h4 class="skill-group-title">Software & Programming</h4>
+                    <h4 class="skill-group-title">Software &amp; Programming</h4>
                     <div class="skill-tags">
                         <span>Python</span>
                         <span>NumPy</span>
@@ -485,7 +499,7 @@
 
         <!-- Coursework -->
         <div class="coursework-section">
-            <h3 class="subsection-title">Relevant Coursework & Workshops</h3>
+            <h3 class="subsection-title">Relevant Coursework &amp; Workshops</h3>
             <div class="coursework-grid">
                 <div class="coursework-item">
                     <span class="coursework-badge">Certificate</span>
@@ -497,7 +511,7 @@
                 </div>
                 <div class="coursework-item">
                     <span class="coursework-badge">Course</span>
-                    <p>Thin Film Characterisation & Ellipsometry — Paul Sabatier Toulouse III</p>
+                    <p>Thin Film Characterisation &amp; Ellipsometry — Paul Sabatier Toulouse III</p>
                 </div>
                 <div class="coursework-item">
                     <span class="coursework-badge">Workshop</span>
@@ -505,7 +519,7 @@
                 </div>
                 <div class="coursework-item">
                     <span class="coursework-badge">Workshop</span>
-                    <p>Summer School on Device Fabrication & Characterisation — EPFL, Lausanne, Switzerland</p>
+                    <p>Summer School on Device Fabrication &amp; Characterisation — EPFL, Lausanne, Switzerland</p>
                 </div>
                 <div class="coursework-item">
                     <span class="coursework-badge">Workshop</span>
@@ -519,39 +533,50 @@
 <!-- ─── Awards ─── -->
 <section id="awards" class="section">
     <div class="container">
-        <h2 class="section-title"><span class="section-number">05</span>Awards & Fellowships</h2>
+        <div class="section-header">
+            <p class="section-label">05 / AWARDS</p>
+            <h2 class="section-title">Fellowships, Grants &amp; Honors</h2>
+        </div>
         <div class="awards-grid">
             <div class="award-card">
-
-                <h4>NanoX Postdoctoral Fellowship</h4>
+                <span class="award-badge">Fellowship</span>
+                <h4 class="award-title">NanoX Postdoctoral Fellowship</h4>
+                <p class="award-meta">Toulouse Graduate School of Nanoscience</p>
             </div>
             <div class="award-card">
-
-                <h4>ANR Postdoctoral Fellowship</h4>
+                <span class="award-badge">Fellowship</span>
+                <h4 class="award-title">ANR Postdoctoral Fellowship</h4>
+                <p class="award-meta">Agence Nationale de la Recherche, France</p>
             </div>
             <div class="award-card">
-
-                <h4>Marie Skłodowska-Curie Actions ESR Fellowship</h4>
+                <span class="award-badge">Fellowship</span>
+                <h4 class="award-title">Marie Skłodowska-Curie Actions ESR Fellowship</h4>
+                <p class="award-meta">European Commission · Horizon 2020</p>
             </div>
             <div class="award-card">
-
-                <h4>EMFL Proposal Grant</h4>
+                <span class="award-badge">Grant</span>
+                <h4 class="award-title">EMFL Proposal Grant</h4>
+                <p class="award-meta">European Magnetic Field Laboratory</p>
             </div>
             <div class="award-card">
-
-                <h4>Laserlab Europe Grant 2023</h4>
+                <span class="award-badge">Grant</span>
+                <h4 class="award-title">Laserlab Europe Grant 2023</h4>
+                <p class="award-meta">European Research Infrastructure</p>
             </div>
             <div class="award-card">
-
-                <h4>Junior Research Fellowship, IIT Madras</h4>
+                <span class="award-badge">Fellowship</span>
+                <h4 class="award-title">Junior Research Fellowship</h4>
+                <p class="award-meta">IIT Madras, Chennai, India</p>
             </div>
             <div class="award-card">
-
-                <h4>GATE 2018 Qualified</h4>
+                <span class="award-badge">National</span>
+                <h4 class="award-title">GATE 2018 Qualified</h4>
+                <p class="award-meta">Graduate Aptitude Test in Engineering</p>
             </div>
             <div class="award-card">
-
-                <h4>Gold Medalist — National Science Olympiad</h4>
+                <span class="award-badge">Honor</span>
+                <h4 class="award-title">Gold Medalist — National Science Olympiad</h4>
+                <p class="award-meta">Science Olympiad Foundation</p>
             </div>
         </div>
     </div>
@@ -560,7 +585,10 @@
 <!-- ─── Talks ─── -->
 <section id="talks" class="section section-alt">
     <div class="container">
-        <h2 class="section-title"><span class="section-number">06</span>Scientific Communication</h2>
+        <div class="section-header">
+            <p class="section-label">06 / TALKS</p>
+            <h2 class="section-title">Scientific Communication &amp; Conferences</h2>
+        </div>
         <div class="talks-list">
             <div class="talk-item">
                 <span class="talk-type talk-invited">Invited Talk</span>
@@ -625,37 +653,101 @@
 <!-- ─── Contact ─── -->
 <section id="contact" class="section">
     <div class="container">
-        <h2 class="section-title"><span class="section-number">07</span>Get in Touch</h2>
+        <div class="section-header">
+            <p class="section-label">07 / CONTACT &amp; LOCATION</p>
+            <h2 class="section-title">Get in Touch &amp; Location</h2>
+        </div>
         <div class="contact-grid">
             <div class="contact-info">
-                <p class="contact-lead">I am open to research collaborations, speaking invitations, and academic opportunities. Feel free to reach out.</p>
+                <p class="contact-lead">I am open to research collaborations, speaking invitations, and academic inquiries. Feel free to reach out.</p>
                 <div class="contact-links">
                     <a href="mailto:palaiswaroop@gmail.com" class="contact-link">
-                        <span class="contact-link-icon">✉</span>
+                        <span class="contact-link-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                            </svg>
+                        </span>
                         <div>
                             <span class="contact-link-label">Email</span>
                             <span class="contact-link-value">palaiswaroop@gmail.com</span>
                         </div>
                     </a>
                     <a href="https://linkedin.com/in/swaroop-kumar-palai" target="_blank" rel="noopener" class="contact-link">
-                        <span class="contact-link-icon">in</span>
+                        <span class="contact-link-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </span>
                         <div>
                             <span class="contact-link-label">LinkedIn</span>
                             <span class="contact-link-value">swaroop-kumar-palai</span>
                         </div>
                     </a>
                     <a href="https://scholar.google.com/citations?user=A_FieckAAAAJ&hl=en" target="_blank" rel="noopener" class="contact-link">
-                        <span class="contact-link-icon">🎓</span>
+                        <span class="contact-link-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
+                            </svg>
+                        </span>
                         <div>
                             <span class="contact-link-label">Google Scholar</span>
                             <span class="contact-link-value">Swaroop Kumar Palai</span>
                         </div>
                     </a>
                     <div class="contact-link">
-                        <span class="contact-link-icon">📍</span>
+                        <span class="contact-link-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </span>
                         <div>
                             <span class="contact-link-label">Location</span>
-                            <span class="contact-link-value">Toulouse, France</span>
+                            <span class="contact-link-value">CEMES-CNRS &amp; LPCNO · Toulouse, France</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ─── Real Interactive Map Card (CEMES-CNRS Toulouse) ─── -->
+            <div class="map-card-wrapper">
+                <div class="toulouse-map-card">
+                    <div class="map-card-header">
+                        <div class="map-live-status">
+                            <span class="live-dot"></span>
+                            <span class="live-label">CEMES-CNRS · TOULOUSE, FRANCE</span>
+                        </div>
+                        <span class="map-coord">29 Rue Jeanne Marvig · 43.5828° N, 1.4651° E</span>
+                    </div>
+
+                    <div class="map-canvas-container">
+                        <!-- Real Leaflet map centered at CEMES-CNRS (29 Rue Jeanne Marvig, 31055 Toulouse) -->
+                        <div id="toulouseMap" class="real-map-view"></div>
+                    </div>
+
+                    <!-- Card Info Bar -->
+                    <div class="map-card-footer">
+                        <div class="map-location-meta">
+                            <span class="map-meta-label">AFFILIATION &amp; LAB</span>
+                            <span class="map-meta-value">CEMES-CNRS · 29 Rue Jeanne Marvig, 31055 Toulouse</span>
+                        </div>
+                        <div class="map-action-buttons">
+                            <a href="https://www.waze.com/live-map/directions?to=ll.43.5828%2C1.4651" target="_blank" rel="noopener" class="map-directions-btn waze-btn" title="Open in Waze">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12c0 2.85 1.2 5.41 3.12 7.23L4 22l3.43-1.03C9.07 21.62 10.49 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm-3.5 12c-.83 0-1.5-.67-1.5-1.5S7.67 11 8.5 11s1.5.67 1.5 1.5S9.33 14 8.5 14zm7 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+                                </svg>
+                                <span>Waze</span>
+                            </a>
+                            <a href="https://maps.google.com/?q=CEMES+CNRS+29+Rue+Jeanne+Marvig+Toulouse" target="_blank" rel="noopener" class="map-directions-btn" title="Open in Google Maps">
+                                <span>Google Maps</span>
+                                <svg width="11" height="11" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M3 13L13 3M13 3H5M13 3V11"></path>
+                                </svg>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -671,6 +763,7 @@
     </div>
 </footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="script.js"></script>
 </body>
 </html>
