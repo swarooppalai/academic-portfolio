@@ -98,13 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealTargets.forEach(el => revealObserver.observe(el));
 
-    // ─── Real Leaflet Toulouse Map (CEMES-CNRS) ───
+    // ─── Real Leaflet Toulouse Map (CEMES-CNRS Plus Code: HFH7+J2) ───
     const mapElement = document.getElementById('toulouseMap');
     if (mapElement && typeof L !== 'undefined') {
-        const cemesCoords = [43.5828, 1.4651]; // CEMES-CNRS, 29 Rue Jeanne Marvig, 31055 Toulouse
+        const cemesCoords = [43.5791, 1.4627]; // CEMES-CNRS, 29 Rue Jeanne Marvig, 31055 Toulouse (Plus Code: HFH7+J2)
         const map = L.map('toulouseMap', {
             center: cemesCoords,
-            zoom: 15,
+            zoom: 16,
             zoomControl: true,
             scrollWheelZoom: false
         });
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="waze-pin-wrapper">
                     <div class="waze-radar-wave r1"></div>
                     <div class="waze-radar-wave r2"></div>
-                    <div class="waze-beacon-core" title="CEMES-CNRS">
+                    <div class="waze-beacon-core" title="CEMES-CNRS (HFH7+J2 Toulouse)">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFFFFF">
                             <path d="M12 2C6.48 2 2 6.48 2 12c0 2.85 1.2 5.41 3.12 7.23L4 22l3.43-1.03C9.07 21.62 10.49 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/>
                         </svg>
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         marker.bindPopup(`
             <div class="map-popup-editorial">
-                <p class="popup-label">RESEARCH LAB LOCATION</p>
+                <p class="popup-label">RESEARCH LAB · PLUS CODE: HFH7+J2</p>
                 <h4 class="popup-title">CEMES-CNRS · LPCNO</h4>
                 <p class="popup-address">29 Rue Jeanne Marvig, 31055 Toulouse</p>
                 <p class="popup-author">Swaroop Kumar Palai</p>
