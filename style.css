@@ -1514,13 +1514,17 @@ body.dark-mode .leaflet-control-attribution a {
         margin-bottom: 22px;
     }
     .hero-actions {
+        display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
-        width: 100%;
+        justify-content: center;
+        gap: 10px;
+        width: auto;
     }
     .hero-actions .btn {
-        flex: 1 1 160px;
-        min-height: 44px;
+        padding: 8px 18px;
+        font-size: 0.8125rem;
+        min-height: 38px;
+        flex: 0 1 auto;
     }
 
     /* Education & Awards */
@@ -1584,10 +1588,18 @@ body.dark-mode .leaflet-control-attribution a {
         padding: 28px 14px;
     }
     .hero-actions {
-        flex-direction: column;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
     }
     .hero-actions .btn {
-        width: 100%;
+        padding: 7px 14px;
+        font-size: 0.775rem;
+        min-height: 36px;
+        width: auto;
+        flex: 0 1 auto;
     }
     .about-stats {
         grid-template-columns: 1fr 1fr;
