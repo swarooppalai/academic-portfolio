@@ -149,20 +149,39 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => map.invalidateSize(), 400);
     }
 
-    // ─── Hero Card Dark Mode Toggle ───
+    // ─── Hero Card Dark Mode Toggle & Visual Affordances ───
     const heroCard = document.getElementById('heroCard') || document.querySelector('.hero-content');
+    const heroThemeBadge = document.getElementById('heroThemeBadge');
+    const heroThemeIcon  = document.getElementById('heroThemeIcon');
+    const heroThemeText  = document.getElementById('heroThemeText');
+    const heroCursorCue  = document.getElementById('heroCursorCue');
+    const heroCueIcon    = document.getElementById('heroCueIcon');
+    const heroCueText    = document.getElementById('heroCueText');
+
+    const moonIconSvg = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+    const sunIconSvg  = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+
+    const syncThemeUI = (isDark) => {
+        if (heroThemeIcon) heroThemeIcon.innerHTML = isDark ? sunIconSvg : moonIconSvg;
+        if (heroThemeText) heroThemeText.textContent = isDark ? 'Light mode' : 'Dark mode';
+        if (heroCueIcon)   heroCueIcon.innerHTML = isDark ? sunIconSvg : moonIconSvg;
+        if (heroCueText)   heroCueText.textContent = isDark ? 'Click to switch to Light mode' : 'Click to switch to Dark mode';
+    };
 
     // Initialize from localStorage
     const savedTheme = localStorage.getItem('portfolio-theme');
-    if (savedTheme === 'dark') {
+    const initialIsDark = savedTheme === 'dark';
+    if (initialIsDark) {
         document.body.classList.add('dark-mode');
         if (window.updateMapTheme) window.updateMapTheme(true);
     }
+    syncThemeUI(initialIsDark);
 
     if (heroCard) {
         const toggleTheme = () => {
             const isDark = document.body.classList.toggle('dark-mode');
             localStorage.setItem('portfolio-theme', isDark ? 'dark' : 'light');
+            syncThemeUI(isDark);
             if (window.updateMapTheme) {
                 window.updateMapTheme(isDark);
             }
@@ -182,6 +201,60 @@ document.addEventListener('DOMContentLoaded', () => {
                 toggleTheme();
             }
         });
+
+        // ─── Dynamic Cursor-Placement Follower Cue ───
+        if (heroCursorCue) {
+            let isHovered = false;
+            let targetX = 0;
+            let targetY = 0;
+            let currentX = 0;
+            let currentY = 0;
+            let rafId = null;
+
+            const animateCue = () => {
+                if (!isHovered) return;
+                // High-precision lerp for liquid, weightless follower motion
+                currentX += (targetX - currentX) * 0.24;
+                currentY += (targetY - currentY) * 0.24;
+
+                heroCursorCue.style.transform = `translate3d(${currentX + 16}px, ${currentY + 16}px, 0)`;
+                rafId = requestAnimationFrame(animateCue);
+            };
+
+            heroCard.addEventListener('mouseenter', (e) => {
+                const rect = heroCard.getBoundingClientRect();
+                targetX = e.clientX - rect.left;
+                targetY = e.clientY - rect.top;
+                currentX = targetX;
+                currentY = targetY;
+                isHovered = true;
+                heroCursorCue.classList.add('cue-visible');
+                heroCursorCue.classList.remove('cue-suppressed');
+                heroCursorCue.style.transform = `translate3d(${targetX + 16}px, ${targetY + 16}px, 0)`;
+                cancelAnimationFrame(rafId);
+                rafId = requestAnimationFrame(animateCue);
+            });
+
+            heroCard.addEventListener('mousemove', (e) => {
+                const rect = heroCard.getBoundingClientRect();
+                targetX = e.clientX - rect.left;
+                targetY = e.clientY - rect.top;
+
+                // Seamlessly suppress cursor follower when hovering action buttons or links
+                if (e.target.closest('a, button, .btn, .hero-theme-badge')) {
+                    heroCursorCue.classList.add('cue-suppressed');
+                } else {
+                    heroCursorCue.classList.remove('cue-suppressed');
+                }
+            });
+
+            heroCard.addEventListener('mouseleave', () => {
+                isHovered = false;
+                heroCursorCue.classList.remove('cue-visible');
+                heroCursorCue.classList.add('cue-suppressed');
+                cancelAnimationFrame(rafId);
+            });
+        }
     }
 });
 
