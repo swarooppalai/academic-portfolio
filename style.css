@@ -1050,7 +1050,7 @@ a:hover {
 .talk-item {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 22px;
     padding: 18px 22px;
 }
 .talk-type {
@@ -1059,9 +1059,15 @@ a:hover {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    padding: 4px 9px;
+    padding: 4px 10px;
     border-radius: 2px;
     flex-shrink: 0;
+    width: 124px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
 }
 .talk-invited {
     background: var(--accent);
@@ -1606,6 +1612,9 @@ body.dark-mode .leaflet-control-attribution a {
         align-items: flex-start;
         gap: 8px;
         padding: 18px;
+    }
+    .talk-type {
+        width: auto;
     }
 
     /* Contact & Map */
