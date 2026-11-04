@@ -109,19 +109,14 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollWheelZoom: false
         });
 
-        // CartoDB tile URLs (light & dark)
-        const lightTileUrl = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
-        const darkTileUrl = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+        // OpenStreetMap tile URL (100% free, no API key required)
+        const osmTileUrl = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
         const tileOptions = {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            subdomains: 'abcd',
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
             maxZoom: 19
         };
 
-        let currentTileLayer = L.tileLayer(
-            document.body.classList.contains('dark-mode') ? darkTileUrl : lightTileUrl,
-            tileOptions
-        ).addTo(map);
+        let currentTileLayer = L.tileLayer(osmTileUrl, tileOptions).addTo(map);
 
         // Custom Waze-style animated marker pin on CEMES
         const wazeIcon = L.divIcon({
@@ -143,11 +138,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const marker = L.marker(cemesCoords, { icon: wazeIcon }).addTo(map);
 
-        // Update map tiles on theme change
+        // Update map theme hook (handled seamlessly via CSS tile-pane filter)
         window.updateMapTheme = (isDark) => {
-            if (map && currentTileLayer) {
-                map.removeLayer(currentTileLayer);
-                currentTileLayer = L.tileLayer(isDark ? darkTileUrl : lightTileUrl, tileOptions).addTo(map);
+            if (map) {
+                map.invalidateSize();
             }
         };
 

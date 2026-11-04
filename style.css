@@ -1193,6 +1193,11 @@ a:hover {
     z-index: 1;
 }
 
+/* Dark mode theme for OpenStreetMap tiles without distorting marker pins */
+.dark-mode .real-map-view .leaflet-tile-pane {
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
 /* Custom Waze-style animated marker pin on Leaflet */
 .waze-leaflet-marker {
     background: none !important;
