@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=IBM+Plex+Mono:ital,wght@0,400..600;1,400..600&family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <link rel="stylesheet" href="style.css?v=16">
+    <link rel="stylesheet" href="style.css?v=17">
 </head>
 <body>
 
@@ -30,6 +30,7 @@
         <ul class="nav-links" id="navLinks" role="menubar">
             <li role="none"><a href="#about" role="menuitem">About</a></li>
             <li role="none"><a href="#research" role="menuitem">Research</a></li>
+            <li role="none"><a href="#lab" role="menuitem">Interactive Lab</a></li>
             <li role="none"><a href="#publications" role="menuitem">Publications</a></li>
             <li role="none"><a href="#education" role="menuitem">Education</a></li>
             <li role="none"><a href="#awards" role="menuitem">Awards</a></li>
@@ -341,11 +342,510 @@
     </div>
 </section>
 
+<!-- ─── Interactive Lab & Experimental Benchmarks ─── -->
+<section id="lab" class="section">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-label">03 / INTERACTIVE LAB</p>
+            <h2 class="section-title">Interactive Physics &amp; Experimental Benchmarks</h2>
+        </div>
+        <p class="lab-lead-desc">
+            Explore the physical mechanisms, nanofabrication workflows, and quantum optical diagnostics central to my experimental research. Adjust the interactive controls below to observe real-time ray tracing, exciton binding, spin-selective intersystem crossing, electrostatic electret trapping, and single-photon quantum statistics.
+        </p>
+
+        <!-- Sub-Navigation Tabs -->
+        <nav class="lab-nav" aria-label="Interactive Physics Topics">
+            <ul class="lab-tabs" role="tablist">
+                <li role="presentation">
+                    <button class="lab-tab-btn active" role="tab" aria-selected="true" data-tab="tab-bench" id="btn-tab-bench" aria-controls="tab-bench">
+                        <span class="tab-num">01</span> Optical Bench &amp; Beam Walking
+                    </button>
+                </li>
+                <li role="presentation">
+                    <button class="lab-tab-btn" role="tab" aria-selected="false" data-tab="tab-exciton" id="btn-tab-exciton" aria-controls="tab-exciton">
+                        <span class="tab-num">02</span> 2D Excitons &amp; AFM Ironing
+                    </button>
+                </li>
+                <li role="presentation">
+                    <button class="lab-tab-btn" role="tab" aria-selected="false" data-tab="tab-nv" id="btn-tab-nv" aria-controls="tab-nv">
+                        <span class="tab-num">03</span> NV Centers &amp; ODMR
+                    </button>
+                </li>
+                <li role="presentation">
+                    <button class="lab-tab-btn" role="tab" aria-selected="false" data-tab="tab-nano" id="btn-tab-nano" aria-controls="tab-nano">
+                        <span class="tab-num">04</span> AFM Nanoxerography
+                    </button>
+                </li>
+                <li role="presentation">
+                    <button class="lab-tab-btn" role="tab" aria-selected="false" data-tab="tab-g2" id="btn-tab-g2" aria-controls="tab-g2">
+                        <span class="tab-num">05</span> g⁽²⁾(τ) Single Photons
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Tab 01: Optical Bench (Two-Mirror Beam Walking) -->
+        <div class="lab-panel active" id="tab-bench" role="tabpanel" aria-labelledby="btn-tab-bench">
+            <div class="lab-grid">
+                <!-- Left: Editorial Article -->
+                <article class="editorial-article">
+                    <div class="editorial-header">
+                        <span class="editorial-topic-tag">Experimental Instrumentation · Free-Space Optics</span>
+                        <h3 class="editorial-title">The Experimental Art of Beam Walking: Decoupling Spatial and Angular Degrees of Freedom</h3>
+                        <div class="editorial-meta">Dr. Swaroop Kumar Palai · CEMES &amp; LPCNO Toulouse</div>
+                    </div>
+                    <div class="editorial-body">
+                        <p class="editorial-dropcap">A fundamental rite of passage in the ultrafast and quantum optics laboratory is the alignment of a laser beam through two spatial apertures or into a single-mode fiber coupler. A freely propagating laser beam possesses four spatial degrees of freedom: horizontal and vertical positions $(x, y)$, alongside their respective angular trajectories $(\theta_x, \theta_y)$. A single steering mirror cannot independently control both coordinate sets without introducing severe clipping.</p>
+                        
+                        <p>To overcome this, experimentalists employ the classic <strong>two-mirror beam steering configuration</strong>. Mirror 1 ($M_1$) primarily dictates the near-field position of the beam at Pinhole 1 ($P_1$), whereas Mirror 2 ($M_2$) controls the far-field angle directing into Pinhole 2 ($P_2$). However, because rotating $M_2$ pivots the beam about its reflective surface, each angular adjustment slightly translates the beam off the center of $P_1$, coupling the two variables.</p>
+
+                        <div class="editorial-formula">
+                            $$\eta_{\text{total}} = \exp\left(-\frac{\Delta y_1^2}{w_1^2}\right) \cdot \exp\left(-\frac{\Delta y_2^2}{w_2^2}\right) \to 1.0$$
+                            <span class="editorial-formula-desc">Collinear transmission efficiency through dual pinhole apertures ($P_1, P_2$)</span>
+                        </div>
+
+                        <p>Experimental convergence is achieved through an iterative feedback algorithm known as <em>beam walking</em>: one adjusts $M_1$ to center through $P_1$, tilts $M_2$ to optimize $P_2$, walks $M_1$ slightly past the maximum to compensate for cross-talk, and repeats until the beam is collinearly locked to the optical axis.</p>
+
+                        <div class="editorial-callout">
+                            <div class="editorial-callout-title">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                                Lab Insight · Cryogenic Confocal Spectroscopy
+                            </div>
+                            <p>During low-temperature photoluminescence experiments at 4 Kelvin, mechanical thermal contraction of the optical cryostat introduces sub-milliradian beam walking drift. Mastering fast, deterministic two-mirror compensation ensures optimal confocal excitation and single-photon collection yields.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Right: Interactive Workbench -->
+                <div class="interactive-bench">
+                    <div class="bench-header">
+                        <div class="bench-title">
+                            <span class="bench-live-indicator"></span>
+                            <span>Virtual Optical Breadboard</span>
+                        </div>
+                        <div class="bench-status-badge" id="benchStatus">COLLINEAR ALIGNED</div>
+                    </div>
+
+                    <div class="bench-canvas-card">
+                        <canvas id="benchCanvas" width="600" height="360" role="img" aria-label="Interactive Optical Bench Ray Tracing Simulation"></canvas>
+                    </div>
+
+                    <div class="bench-controls">
+                        <div class="control-row">
+                            <div class="control-meta">
+                                <label for="benchM1" class="control-label">Mirror 1 Kinematic Tilt (θ₁ · Near Field)</label>
+                                <span class="control-val" id="benchM1Val">0.0°</span>
+                            </div>
+                            <input type="range" id="benchM1" class="bench-slider" min="-5.0" max="5.0" step="0.1" value="0.0">
+                        </div>
+
+                        <div class="control-row">
+                            <div class="control-meta">
+                                <label for="benchM2" class="control-label">Mirror 2 Kinematic Tilt (θ₂ · Far Field)</label>
+                                <span class="control-val" id="benchM2Val">0.0°</span>
+                            </div>
+                            <input type="range" id="benchM2" class="bench-slider" min="-5.0" max="5.0" step="0.1" value="0.0">
+                        </div>
+
+                        <div class="control-row">
+                            <div class="control-meta">
+                                <label for="benchPower" class="control-label">Laser Intensity / Power</label>
+                                <span class="control-val" id="benchPowerVal">60 mW</span>
+                            </div>
+                            <input type="range" id="benchPower" class="bench-slider" min="10" max="100" step="5" value="60">
+                        </div>
+                    </div>
+
+                    <div class="bench-actions">
+                        <button type="button" class="bench-action-btn btn-accent" id="benchAutoAlign">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Auto-Walk Beam
+                        </button>
+                        <button type="button" class="bench-action-btn" id="benchMisalign">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                            Misalign Mirrors
+                        </button>
+                        <div class="bench-btn-group" role="group" aria-label="Laser Wavelength">
+                            <button type="button" class="bench-wl-btn active" data-wl="green">532 nm (Green)</button>
+                            <button type="button" class="bench-wl-btn" data-wl="red">637 nm (NV Red)</button>
+                            <button type="button" class="bench-wl-btn" data-wl="violet">405 nm (UV)</button>
+                        </div>
+                        <div style="margin-left: auto; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary);">
+                            Throughput: <strong id="benchThroughput" style="color: var(--accent);">100%</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 02: 2D Excitons & AFM Ironing -->
+        <div class="lab-panel" id="tab-exciton" role="tabpanel" aria-labelledby="btn-tab-exciton">
+            <div class="lab-grid">
+                <!-- Left: Editorial Article -->
+                <article class="editorial-article">
+                    <div class="editorial-header">
+                        <span class="editorial-topic-tag">2D Quantum Materials · Excitonic Physics</span>
+                        <h3 class="editorial-title">Coulomb Confinement in Flatland: Exciton Binding and Linewidth Recovery via AFM Ironing</h3>
+                        <div class="editorial-meta">Dr. Swaroop Kumar Palai · Nano Letters (2023) &amp; 2D Materials (2024)</div>
+                    </div>
+                    <div class="editorial-body">
+                        <p class="editorial-dropcap">In atomically thin transition metal dichalcogenides (monolayer $\text{WSe}_2, \text{MoS}_2$), spatial quantum confinement and the abrupt dielectric mismatch between the monolayer and its environment suppress out-of-plane Coulomb field line screening. As a result, the attractive interaction between photogenerated electrons and holes is enormously amplified, forming Wannier-Mott excitons with binding energies exceeding $E_b \approx 300\text{--}500\text{ meV}$—nearly two orders of magnitude greater than in bulk GaAs.</p>
+
+                        <p>The exciton's real-space wavefunction exhibits a compact Bohr radius ($a_B \approx 1\text{--}3\text{ nm}$). In van der Waals heterostructures, artificial moiré superlattices formed by twist-angle misalignment introduce localized periodic potentials. However, mechanical dry transfer inevitably traps hydrocarbon residues, interfacial bubbles, and non-uniform micro-strain gradients across the junction.</p>
+
+                        <div class="editorial-formula">
+                            $$E_b \propto \frac{\mu}{\varepsilon_{\text{eff}}^2}, \quad \text{FWHM} = \Gamma_0(T) + \sigma_{\text{strain}}(\nabla\epsilon)$$
+                            <span class="editorial-formula-desc">Dielectric screening of binding energy and strain-induced inhomogeneous linewidth broadening</span>
+                        </div>
+
+                        <p>These local strain variations deform the bandgap across space, causing severe inhomogeneous photoluminescence (PL) broadening ($\text{FWHM} > 30\text{ meV}$) and obfuscating delicate moiré exciton mini-bands.</p>
+
+                        <div class="editorial-callout">
+                            <div class="editorial-callout-title">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                                Palai et al., Nano Letters 23 (11), 4749–4755 (2023)
+                            </div>
+                            <p>We pioneered <strong>Atomic Force Microscopy (AFM) Ironing</strong>: applying a high-deflection cantilever raster-scan across the heterostructure to mechanically squeegee trapped interfacial blister bubbles out of the junction. This planarizes the van der Waals interface, recovers atomic-scale flatness, and sharpens the low-temperature PL linewidth down to its intrinsic 3 meV limit.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Right: Interactive Workbench -->
+                <div class="interactive-bench">
+                    <div class="bench-header">
+                        <div class="bench-title">
+                            <span class="bench-live-indicator"></span>
+                            <span>Exciton Wavefunction &amp; Cryo-PL Spectrometer</span>
+                        </div>
+                        <div class="bench-status-badge">CRYOGENIC 4K REGIME</div>
+                    </div>
+
+                    <div class="bench-canvas-card">
+                        <canvas id="excitonCanvas" width="600" height="360" role="img" aria-label="2D Exciton Orbit and Photoluminescence Spectrum"></canvas>
+                    </div>
+
+                    <div class="bench-controls">
+                        <div class="control-row">
+                            <div class="control-meta">
+                                <label for="excitonEps" class="control-label">Dielectric Screening (εᵣ · Substrate &amp; hBN Capping)</label>
+                                <span class="control-val" id="excitonEpsVal">4.5</span>
+                            </div>
+                            <input type="range" id="excitonEps" class="bench-slider" min="1.0" max="10.0" step="0.5" value="4.5">
+                        </div>
+
+                        <div class="control-row">
+                            <div class="control-meta">
+                                <label for="excitonStrain" class="control-label">Interlayer Strain Inhomogeneity (Bubbles &amp; Wrinkles)</label>
+                                <span class="control-val" id="excitonStrainVal">0.0% (AFM Ironed)</span>
+                            </div>
+                            <input type="range" id="excitonStrain" class="bench-slider" min="0.0" max="1.0" step="0.02" value="0.0">
+                        </div>
+
+                        <div class="control-row">
+                            <div class="control-meta">
+                                <label for="excitonTemp" class="control-label">Sample Temperature (Cryogenic to Room Temp)</label>
+                                <span class="control-val" id="excitonTempVal">4 K</span>
+                            </div>
+                            <input type="range" id="excitonTemp" class="bench-slider" min="4" max="300" step="4" value="4">
+                        </div>
+                    </div>
+
+                    <div class="bench-actions">
+                        <button type="button" class="bench-action-btn btn-accent" id="excitonIronBtn">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+                            Execute AFM Ironing Scan
+                        </button>
+                        <button type="button" class="bench-action-btn" id="excitonValleyToggle">
+                            Valley: K+ (σ⁺)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 03: NV Centers in Diamond & ODMR -->
+        <div class="lab-panel" id="tab-nv" role="tabpanel" aria-labelledby="btn-tab-nv">
+            <div class="lab-grid">
+                <!-- Left: Editorial Article -->
+                <article class="editorial-article">
+                    <div class="editorial-header">
+                        <span class="editorial-topic-tag">Solid-State Spin Qubits · Quantum Magnetometry</span>
+                        <h3 class="editorial-title">Single Spins in Diamond: Optical Spin Readout via Optically Detected Magnetic Resonance (ODMR)</h3>
+                        <div class="editorial-meta">Dr. Swaroop Kumar Palai · Nanophotonics (Wiley 2026) &amp; CEMES-CNRS</div>
+                    </div>
+                    <div class="editorial-body">
+                        <p class="editorial-dropcap">The negatively charged nitrogen-vacancy ($\text{NV}^-$) center in diamond behaves as an isolated atom trapped within the rigid, wide-bandgap ($5.5\text{ eV}$) carbon lattice. Possessing $C_{3v}$ trigonal symmetry, the center's ground state is an orbital singlet and spin triplet ($^3A_2, S=1$). Relativistic spin-spin dipolar coupling induces a zero-field splitting of $D \approx 2.87\text{ GHz}$ separating the $m_s = 0$ state from the degenerate $m_s = \pm 1$ states.</p>
+
+                        <p>Under non-resonant $532\text{ nm}$ green laser excitation, electrons are pumped into the $^3E$ triplet excited state. The optical decay exhibits a crucial spin-dependent asymmetry: while the $m_s = 0$ state predominantly decays radiatively back to $m_s = 0$ by emitting red photons ($637\text{ nm}$ Zero-Phonon Line and phonon sideband), the $m_s = \pm 1$ state exhibits a high probability of <strong>intersystem crossing (ISC)</strong> into a long-lived metastable singlet state ($^1A_1 \to ^1E$, lifetime $\sim 250\text{ ns}$).</p>
+
+                        <div class="editorial-formula">
+                            $$\Delta f_{\text{Zeeman}} = 2 \gamma_e B_z \quad (\gamma_e \approx 28\text{ MHz/mT})$$
+                            <span class="editorial-formula-desc">Zeeman spectral splitting between $m_s = +1$ and $m_s = -1$ spin sublevels</span>
+                        </div>
+
+                        <p>This non-radiative singlet detour shelves the electron, dramatically dimming photoluminescence and polarising the center into the $m_s = 0$ state with $>80\%$ fidelity. By sweeping a resonant microwave field ($f_{\text{MW}} \approx 2.87\text{ GHz}$), one drives the $m_s = 0 \leftrightarrow \pm 1$ transition, generating an immediate drop in fluorescence—the hallmark of <em>Optically Detected Magnetic Resonance (ODMR)</em>. An applied magnetic field $B_z$ lifts the $m_s = \pm 1$ degeneracy, splitting the resonance into twin dips whose frequency separation directly measures local magnetic fields with nanotesla sensitivity.</p>
+
+                        <div class="editorial-callout">
+                            <div class="editorial-callout-title">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                                On-Chip Directional Quantum Emission
+                            </div>
+                            <p>Coupling deterministic single NV centers into inverse-designed silicon nanoantennas allows us to redirect their broad emission into narrow forward lobes while preserving pristine spin coherence for room-temperature quantum sensing.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Right: Interactive Workbench -->
+                <div class="interactive-bench">
+                    <div class="bench-header">
+                        <div class="bench-title">
+                            <span class="bench-live-indicator"></span>
+                            <span>Spin Dynamics &amp; ODMR Spectrometer</span>
+                        </div>
+                        <div class="bench-status-badge">ODMR ACTIVE</div>
+                    </div>
+
+                    <div class="bench-canvas-card">
+                        <canvas id="nvCanvas" width="600" height="360" role="img" aria-label="NV Center Jablonski Energy Diagram and ODMR Photoluminescence Spectrum"></canvas>
+                    </div>
+
+                    <div class="bench-controls">
+                        <div class="control-row">
+                            <div class="control-meta">
+                                <label for="nvFreq" class="control-label">Microwave Frequency (f_MW)</label>
+                                <span class="control-val" id="nvFreqVal">2.870 GHz</span>
+                            </div>
+                            <input type="range" id="nvFreq" class="bench-slider" min="2.700" max="3.040" step="0.002" value="2.870">
+                        </div>
+
+                        <div class="control-row">
+                            <div class="control-meta">
+                                <label for="nvBField" class="control-label">Axial Magnetic Field (B_z · Zeeman Splitting)</label>
+                                <span class="control-val" id="nvBFieldVal">2.5 mT</span>
+                            </div>
+                            <input type="range" id="nvBField" class="bench-slider" min="0.0" max="8.0" step="0.1" value="2.5">
+                        </div>
+
+                        <div class="control-row">
+                            <div class="control-meta">
+                                <label for="nvLaserPower" class="control-label">Optical Pumping Laser (532 nm)</label>
+                                <span class="control-val" id="nvLaserVal">50 mW</span>
+                            </div>
+                            <input type="range" id="nvLaserPower" class="bench-slider" min="10" max="100" step="5" value="50">
+                        </div>
+                    </div>
+
+                    <div class="bench-actions">
+                        <button type="button" class="bench-action-btn btn-accent" id="nvScanBtn">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                            Run Frequency Sweep (ODMR Scan)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 04: AFM Nanoxerography & Directed Assembly -->
+        <div class="lab-panel" id="tab-nano" role="tabpanel" aria-labelledby="btn-tab-nano">
+            <div class="lab-grid">
+                <!-- Left: Editorial Article -->
+                <article class="editorial-article">
+                    <div class="editorial-header">
+                        <span class="editorial-topic-tag">Nanoscale Directed Assembly · Scanning Probe Nanolithography</span>
+                        <h3 class="editorial-title">Deterministic Nanoxerography: Electrostatic Electrets for Directed Single-Emitter Placement</h3>
+                        <div class="editorial-meta">Dr. Swaroop Kumar Palai · CEMES-CNRS &amp; LPCNO Toulouse</div>
+                    </div>
+                    <div class="editorial-body">
+                        <p class="editorial-dropcap">A central bottleneck in hybrid quantum photonics is the stochastic spatial distribution of quantum emitters when deposited via conventional drop-casting or spin-coating. Integrating single nanodiamonds hosting NV centers into the tight near-field hot-spots of plasmonic cavities or dielectric Mie resonators requires sub-50 nanometer positioning precision with high deterministic yield.</p>
+
+                        <p><strong>AFM Nanoxerography</strong> leverages atomic force microscopy to create localized electrostatic potential traps on dielectric films ($\text{SiO}_2$ or PMMA). A conductive, metal-coated AFM tip acts as a nanoscopic electrode. By applying a bias voltage pulse ($V_{\text{bias}} \approx 10\text{--}40\text{ V}$, duration $5\text{--}100\text{ ms}$), charge carriers are injected into deep dielectric traps, generating stable surface charge electrets of controlled diameter and charge density.</p>
+
+                        <div class="editorial-formula">
+                            $$\vec{F}_{\text{DEP}} = 2\pi\varepsilon_m r^3 \text{Re}[K(\omega)] \nabla |\vec{E}|^2 + q_{\text{zeta}} \vec{E}$$
+                            <span class="editorial-formula-desc">Dielectrophoretic and Coulomb forces capturing charged nanodiamonds into the electret trap</span>
+                        </div>
+
+                        <p>When the patterned substrate is immersed into a colloidal liquid suspension containing charged nanodiamonds, long-range Coulomb attraction and strong dielectrophoretic gradient forces pull diffusing particles directly into the center of the electret potential well, immobilizing single nanodiamonds at pre-designed coordinates with nanometric spatial resolution.</p>
+
+                        <div class="editorial-callout">
+                            <div class="editorial-callout-title">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                                Directed Assembly at CEMES &amp; LPCNO
+                            </div>
+                            <p>By modulating tip bias voltages and colloidal surface functionalization, our group achieved reproducible single-nanodiamond trapping yields over 85%, eliminating multi-particle clusters and enabling the deterministic creation of hybrid single-photon sources.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Right: Interactive Workbench -->
+                <div class="interactive-bench">
+                    <div class="bench-header">
+                        <div class="bench-title">
+                            <span class="bench-live-indicator"></span>
+                            <span>Conductive AFM Tip &amp; Electrostatic Assembly</span>
+                        </div>
+                        <div class="bench-status-badge">ASSEMBLY BENCH</div>
+                    </div>
+
+                    <div class="bench-canvas-card">
+                        <canvas id="nanoCanvas" width="600" height="360" role="img" aria-label="AFM Nanoxerography Cantilever and Electrostatic Nanodiamond Trapping"></canvas>
+                    </div>
+
+                    <div class="bench-controls">
+                        <div class="control-row">
+                            <div class="control-meta">
+                                <label for="nanoBias" class="control-label">AFM Tip Bias Voltage (V_bias)</label>
+                                <span class="control-val" id="nanoBiasVal">25 V</span>
+                            </div>
+                            <input type="range" id="nanoBias" class="bench-slider" min="5" max="40" step="1" value="25">
+                        </div>
+
+                        <div class="control-row">
+                            <div class="control-meta">
+                                <label for="nanoPulse" class="control-label">Voltage Pulse Duration (t_pulse)</label>
+                                <span class="control-val" id="nanoPulseVal">40 ms</span>
+                            </div>
+                            <input type="range" id="nanoPulse" class="bench-slider" min="10" max="100" step="5" value="40">
+                        </div>
+
+                        <div class="control-row">
+                            <div class="control-meta">
+                                <label for="nanoConc" class="control-label">Colloidal Nanodiamond Concentration</label>
+                                <span class="control-val" id="nanoConcVal">24 particles</span>
+                            </div>
+                            <input type="range" id="nanoConc" class="bench-slider" min="8" max="45" step="1" value="24">
+                        </div>
+                    </div>
+
+                    <div class="bench-actions">
+                        <button type="button" class="bench-action-btn btn-accent" id="nanoPulseBtn">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            Pulse Tip (Write Charge)
+                        </button>
+                        <button type="button" class="bench-action-btn" id="nanoFlushBtn">
+                            Flush Colloid
+                        </button>
+                        <button type="button" class="bench-action-btn" id="nanoClearBtn">
+                            Discharge Substrate
+                        </button>
+                        <div style="margin-left: auto; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary);">
+                            Trapped: <strong id="nanoTrapped" style="color: var(--accent);">0</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 05: g²(τ) Second-Order Autocorrelation -->
+        <div class="lab-panel" id="tab-g2" role="tabpanel" aria-labelledby="btn-tab-g2">
+            <div class="lab-grid">
+                <!-- Left: Editorial Article -->
+                <article class="editorial-article">
+                    <div class="editorial-header">
+                        <span class="editorial-topic-tag">Quantum Optics · Single-Photon Characterization</span>
+                        <h3 class="editorial-title">Proving Single Photons: The Hanbury Brown–Twiss Interferometer and g⁽²⁾(τ) Antibunching</h3>
+                        <div class="editorial-meta">Dr. Swaroop Kumar Palai · Single-Photon Emission Benchmarking</div>
+                    </div>
+                    <div class="editorial-body">
+                        <p class="editorial-dropcap">How can an experimentalist unequivocally prove that an emitter produces genuine quantum light rather than faint classical attenuation? The definitive experimental test is the second-order intensity correlation function, $g^{(2)}(\tau)$, measured using a <strong>Hanbury Brown–Twiss (HBT) interferometer</strong>.</p>
+
+                        <p>In an HBT setup, photoluminescence from a targeted nano-object is directed through a $50:50$ non-polarizing beam splitter onto two Single-Photon Avalanche Diodes (SPADs: Start and Stop channels). A Time-Correlated Single-Photon Counting (TCSPC) module records the histogram of arrival delay times $\tau = t_2 - t_1$.</p>
+
+                        <div class="editorial-formula">
+                            $$g^{(2)}(\tau) = 1 - \left(1 - g^{(2)}(0)\right) e^{-|\tau|/\tau_1}, \quad g^{(2)}(0) = 1 - \frac{1}{N} \rho^2$$
+                            <span class="editorial-formula-desc">Second-order correlation dip for $N$ identical quantum emitters with background purity $\rho = S/(S+B)$</span>
+                        </div>
+
+                        <p>For classical electromagnetic fields, the Cauchy-Schwarz inequality dictates that $g^{(2)}(0) \ge 1$ (coherent laser light yields $g^{(2)}(\tau) = 1$, whereas thermal light exhibits photon bunching $g^{(2)}(0) = 2$). However, a true two-level quantum emitter cannot radiate two photons at the same instant; following emission, it must be re-excited before emitting again. Consequently, the simultaneous coincidence probability at zero delay drops to zero:</p>
+
+                        <p style="text-align: center; font-family: var(--font-mono); font-weight: 600; color: var(--accent); margin: 16px 0;">
+                            g⁽²⁾(0) &lt; 0.5 &implies; Unambiguous Single-Photon Source (Antibunched)
+                        </p>
+
+                        <p>When multiple emitters ($N \ge 2$) reside within the confocal volume, $g^{(2)}(0)$ scales as $1 - 1/N$, exceeding the quantum threshold. Real-world background luminescence ($S/B$) and detector timing jitter convolve the dip, making nanoscale engineering crucial for maximizing quantum purity.</p>
+
+                        <div class="editorial-callout">
+                            <div class="editorial-callout-title">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+                                Purcell Enhancement &amp; Background Suppression
+                            </div>
+                            <p>Coupling deterministically placed single nanodiamonds to optical metasurfaces accelerates the spontaneous emission rate via the Purcell effect, shortening excited state lifetimes down to &lt;5 ns and elevating signal-to-noise ratios to yield record room-temperature antibunching dips ($g^{(2)}(0) &lt; 0.12$).</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Right: Interactive Workbench -->
+                <div class="interactive-bench">
+                    <div class="bench-header">
+                        <div class="bench-title">
+                            <span class="bench-live-indicator"></span>
+                            <span>HBT TCSPC Correlation Spectrometer</span>
+                        </div>
+                        <div class="bench-status-badge" id="g2Verdict">QUANTUM: SINGLE PHOTON SOURCE (g²(0) &lt; 0.5)</div>
+                    </div>
+
+                    <div class="bench-canvas-card">
+                        <canvas id="g2Canvas" width="600" height="360" role="img" aria-label="Hanbury Brown–Twiss g2(tau) Coincidence Histogram and Antibunching Dip"></canvas>
+                    </div>
+
+                    <div class="bench-controls">
+                        <div class="control-row">
+                            <div class="control-meta">
+                                <label for="g2Emitters" class="control-label">Confocal Quantum Emitters in Volume (N)</label>
+                                <span class="control-val" id="g2EmittersVal">1 Emitter (Single)</span>
+                            </div>
+                            <input type="range" id="g2Emitters" class="bench-slider" min="1" max="4" step="1" value="1">
+                        </div>
+
+                        <div class="control-row">
+                            <div class="control-meta">
+                                <label for="g2SBR" class="control-label">Signal-to-Background Ratio (SBR = S/B)</label>
+                                <span class="control-val" id="g2SBRVal">15.0:1</span>
+                            </div>
+                            <input type="range" id="g2SBR" class="bench-slider" min="1.0" max="30.0" step="1.0" value="15.0">
+                        </div>
+
+                        <div class="control-row">
+                            <div class="control-meta">
+                                <label for="g2Lifetime" class="control-label">Excited State Lifetime (τ₁ · Antibunching Width)</label>
+                                <span class="control-val" id="g2LifetimeVal">12.0 ns</span>
+                            </div>
+                            <input type="range" id="g2Lifetime" class="bench-slider" min="2.0" max="25.0" step="0.5" value="12.0">
+                        </div>
+
+                        <div class="control-row">
+                            <div class="control-meta">
+                                <label for="g2Jitter" class="control-label">Detector Timing Jitter (SPAD Convolution σ)</label>
+                                <span class="control-val" id="g2JitterVal">0.35 ns</span>
+                            </div>
+                            <input type="range" id="g2Jitter" class="bench-slider" min="0.1" max="2.0" step="0.05" value="0.35">
+                        </div>
+                    </div>
+
+                    <div class="bench-actions">
+                        <button type="button" class="bench-action-btn btn-accent" id="g2StreamBtn">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                            Stream Live Photons
+                        </button>
+                        <button type="button" class="bench-action-btn" id="g2ResetBtn">
+                            Reset Histogram
+                        </button>
+                        <div style="margin-left: auto; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary);">
+                            g⁽²⁾(0): <strong id="g2Val" style="color: var(--accent);">0.08</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
 <!-- ─── Publications ─── -->
 <section id="publications" class="section">
     <div class="container">
         <div class="section-header">
-            <p class="section-label">03 / PUBLICATIONS</p>
+            <p class="section-label">04 / PUBLICATIONS</p>
             <h2 class="section-title">Publications &amp; Preprints</h2>
         </div>
         <div class="pub-list">
@@ -454,7 +954,7 @@
 <section id="education" class="section section-alt">
     <div class="container">
         <div class="section-header">
-            <p class="section-label">04 / EDUCATION</p>
+            <p class="section-label">05 / EDUCATION</p>
             <h2 class="section-title">Academic Background &amp; Expertise</h2>
         </div>
         <div class="edu-timeline">
@@ -560,7 +1060,7 @@
 <section id="awards" class="section">
     <div class="container">
         <div class="section-header">
-            <p class="section-label">05 / AWARDS</p>
+            <p class="section-label">06 / AWARDS</p>
             <h2 class="section-title">Fellowships, Grants &amp; Honors</h2>
         </div>
         <div class="awards-grid">
@@ -612,7 +1112,7 @@
 <section id="talks" class="section section-alt">
     <div class="container">
         <div class="section-header">
-            <p class="section-label">06 / TALKS</p>
+            <p class="section-label">07 / TALKS</p>
             <h2 class="section-title">Scientific Communication &amp; Conferences</h2>
         </div>
         <div class="talks-list">
@@ -687,7 +1187,7 @@
 <section id="contact" class="section">
     <div class="container">
         <div class="section-header">
-            <p class="section-label">07 / CONTACT &amp; LOCATION</p>
+            <p class="section-label">08 / CONTACT &amp; LOCATION</p>
             <h2 class="section-title">Get in Touch &amp; Location</h2>
         </div>
         <div class="contact-grid">
@@ -830,6 +1330,7 @@
 </footer>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="script.js?v=15"></script>
+<script src="lab-simulations.js?v=1"></script>
+<script src="script.js?v=16"></script>
 </body>
 </html>

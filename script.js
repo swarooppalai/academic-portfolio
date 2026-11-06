@@ -180,6 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.updateMapTheme) {
                 window.updateMapTheme(isDark);
             }
+            window.dispatchEvent(new Event('resize'));
         };
 
         heroCard.addEventListener('click', (e) => {
