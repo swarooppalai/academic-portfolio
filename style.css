@@ -751,6 +751,29 @@ a:hover {
 }
 
 /* ─── Interactive Lab & Experimental Benchmarks ─── */
+.lab-page-header {
+    padding: 120px 0 40px;
+    background: var(--surface-cream);
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 30px;
+}
+
+.lab-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.lab-back-link:hover {
+    color: var(--accent);
+}
+
 .lab-lead-desc {
     font-family: var(--font-display);
     font-size: 1.15rem;
