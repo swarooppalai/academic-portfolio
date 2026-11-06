@@ -1442,6 +1442,33 @@ body.dark-mode .leaflet-control-attribution a {
     letter-spacing: 0.04em;
 }
 
+.footer-socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+}
+
+.footer-socials a {
+    color: #ffffffc0;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.footer-socials a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+.footer-sep {
+    color: #ffffff40;
+    user-select: none;
+}
+
 /* ─── Mobile Navigation Toggle ─── */
 .nav-toggle {
     display: none;
