@@ -1488,31 +1488,125 @@
     }
 
     // ─────────────────────────────────────────────────────────────
-    // TAB SWITCHER CONTROLLER (PAUSES INACTIVE SIMS TO SAVE BATTERY)
+    // BROWSER TAB SWITCHER CONTROLLER & NAVIGATION
     // ─────────────────────────────────────────────────────────────
     function initLabTabs() {
-        const tabBtns = document.querySelectorAll('.lab-tab-btn');
+        const tabBtns = document.querySelectorAll('.browser-tab, .lab-tab-btn');
         const panels = document.querySelectorAll('.lab-panel');
-        if (!tabBtns.length) return;
+        const omniboxUrl = document.getElementById('browserOmniboxUrl');
+        const prevBtn = document.getElementById('browserPrevBtn');
+        const nextBtn = document.getElementById('browserNextBtn');
+        const reloadBtn = document.getElementById('browserReloadBtn');
+
+        const urlMap = {
+            'tab-bench': 'atelier.cnrs.fr/01-beam-walking',
+            'tab-exciton': 'atelier.cnrs.fr/02-2d-excitons',
+            'tab-nv': 'atelier.cnrs.fr/03-nv-centers',
+            'tab-nano': 'atelier.cnrs.fr/04-afm-nanoxerography',
+            'tab-g2': 'atelier.cnrs.fr/05-single-photons'
+        };
+
+        const hashMap = {
+            'tab-bench': 'bench',
+            'tab-exciton': 'exciton',
+            'tab-nv': 'nv',
+            'tab-nano': 'nano',
+            'tab-g2': 'g2'
+        };
+
+        const tabIds = ['tab-bench', 'tab-exciton', 'tab-nv', 'tab-nano', 'tab-g2'];
+
+        function activateTab(targetId, updateHistory = true) {
+            tabBtns.forEach(b => {
+                const isActive = b.dataset.tab === targetId;
+                b.classList.toggle('active', isActive);
+                b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            });
+
+            panels.forEach(panel => {
+                const isActive = panel.id === targetId;
+                panel.classList.toggle('active', isActive);
+                panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+            });
+
+            if (omniboxUrl && urlMap[targetId]) {
+                omniboxUrl.textContent = urlMap[targetId];
+            }
+
+            if (updateHistory && hashMap[targetId]) {
+                try {
+                    history.replaceState(null, '', `#${hashMap[targetId]}`);
+                } catch(e) {}
+            }
+
+            // Trigger resize so newly visible canvas initializes cleanly
+            window.dispatchEvent(new Event('resize'));
+        }
 
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 const targetId = btn.dataset.tab;
-                tabBtns.forEach(b => {
-                    b.classList.toggle('active', b === btn);
-                    b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
-                });
-
-                panels.forEach(panel => {
-                    const isActive = panel.id === targetId;
-                    panel.classList.toggle('active', isActive);
-                    panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
-                });
-
-                // Trigger resize so newly visible canvas initializes cleanly
-                window.dispatchEvent(new Event('resize'));
+                if (targetId) activateTab(targetId);
             });
         });
+
+        // Topic card buttons that jump to tab
+        document.querySelectorAll('[data-switch-tab]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = btn.getAttribute('data-switch-tab');
+                if (targetId) {
+                    activateTab(targetId);
+                    const win = document.querySelector('.browser-window');
+                    if (win) {
+                        win.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // Prev / Next browser buttons
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                const currentActive = document.querySelector('.browser-tab.active, .lab-tab-btn.active');
+                if (!currentActive) return;
+                const currId = currentActive.dataset.tab;
+                const idx = tabIds.indexOf(currId);
+                const prevIdx = (idx - 1 + tabIds.length) % tabIds.length;
+                activateTab(tabIds[prevIdx]);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                const currentActive = document.querySelector('.browser-tab.active, .lab-tab-btn.active');
+                if (!currentActive) return;
+                const currId = currentActive.dataset.tab;
+                const idx = tabIds.indexOf(currId);
+                const nextIdx = (idx + 1) % tabIds.length;
+                activateTab(tabIds[nextIdx]);
+            });
+        }
+
+        // Reload browser button (resets current active simulation)
+        if (reloadBtn) {
+            reloadBtn.addEventListener('click', () => {
+                const currentActive = document.querySelector('.lab-panel.active');
+                if (currentActive) {
+                    const resetBtn = currentActive.querySelector('button[id$="Reset"], button[id*="Reset"]');
+                    if (resetBtn) resetBtn.click();
+                }
+            });
+        }
+
+        // Check initial hash on page load
+        const hash = window.location.hash.replace('#', '');
+        if (hash) {
+            for (const [id, h] of Object.entries(hashMap)) {
+                if (h === hash || id === hash) {
+                    activateTab(id, false);
+                    break;
+                }
+            }
+        }
     }
 
     // Initialize all 5 simulations when DOM is loaded

@@ -784,70 +784,486 @@ a:hover {
     line-height: 1.6;
 }
 
-/* Tab Switcher Navigation */
-.lab-nav {
-    margin-bottom: 36px;
-    border-bottom: 1px solid var(--border-subtle);
-    padding-bottom: 6px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-.lab-tabs {
-    display: flex;
-    gap: 10px;
-    list-style: none;
-    min-width: max-content;
-    padding: 2px 2px 8px 2px;
-}
-
-.lab-tab-btn {
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-    font-weight: 500;
-    color: var(--text-secondary);
+/* ─── Browser Window Workstation Frame ─── */
+.browser-window {
     background: var(--surface-cream);
     border: 1px solid var(--border-subtle);
-    border-radius: 3px;
-    padding: 10px 16px;
-    cursor: pointer;
-    transition: all var(--transition-fast);
+    border-radius: 12px;
+    box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    margin-bottom: 48px;
+    position: relative;
+}
+
+body.dark-mode .browser-window {
+    background: #141416;
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+
+/* Window Header / Tab Strip */
+.browser-header {
+    background: #eae6de;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: flex-end;
+    padding: 10px 14px 0 14px;
+    gap: 12px;
+    user-select: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.browser-header::-webkit-scrollbar {
+    display: none;
+}
+
+body.dark-mode .browser-header {
+    background: #0d0d0f;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* macOS Window Traffic Light Controls */
+.browser-controls {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 8px 11px 4px;
+    flex-shrink: 0;
+}
+
+.control-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.control-dot.close-dot { background: #ff5f56; box-shadow: 0 0 0 1px rgba(0,0,0,0.12); }
+.control-dot.min-dot   { background: #ffbd2e; box-shadow: 0 0 0 1px rgba(0,0,0,0.12); }
+.control-dot.max-dot   { background: #27c93f; box-shadow: 0 0 0 1px rgba(0,0,0,0.12); }
+
+/* Tab Strip Track */
+.browser-tabs-track {
+    display: flex;
+    gap: 3px;
+    flex: 1;
+    min-width: max-content;
+}
+
+/* Individual Browser Tab */
+.browser-tab {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 8px;
+    padding: 9px 16px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
     white-space: nowrap;
+    outline: none;
+    text-decoration: none;
 }
 
-.lab-tab-btn .tab-num {
-    color: var(--accent);
+.browser-tab::after {
+    /* Subtle divider between inactive tabs */
+    content: "";
+    position: absolute;
+    right: -2px;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background: rgba(0, 0, 0, 0.12);
+}
+
+body.dark-mode .browser-tab::after {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.browser-tab:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-primary);
+}
+
+body.dark-mode .browser-tab:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+/* ACTIVE TAB — Merges seamlessly into toolbar and content below */
+.browser-tab.active {
+    background: var(--surface-cream);
+    color: var(--text-primary);
+    border-color: var(--border-subtle);
+    border-bottom: 1px solid var(--surface-cream);
+    margin-bottom: -1px;
+    z-index: 2;
     font-weight: 600;
 }
 
-.lab-tab-btn:hover {
-    border-color: var(--accent);
+body.dark-mode .browser-tab.active {
+    background: #18181c;
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid #18181c;
+}
+
+.browser-tab.active::after {
+    display: none;
+}
+
+/* Active tab top indicator accent line */
+.browser-tab.active::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 8px 8px 0 0;
+}
+
+.browser-tab-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.browser-tab-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.browser-tab-close {
+    font-size: 0.95rem;
+    line-height: 1;
+    color: var(--text-tertiary);
+    margin-left: 4px;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+    transition: opacity 0.15s ease;
+}
+
+.browser-tab:hover .browser-tab-close {
+    opacity: 1;
+}
+
+/* Browser Toolbar (Omnibox / Navigation) */
+.browser-toolbar {
+    background: var(--surface-cream);
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    gap: 14px;
+    z-index: 1;
+    flex-wrap: wrap;
+}
+
+body.dark-mode .browser-toolbar {
+    background: #18181c;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.browser-nav-btns {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.browser-nav-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 6px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.browser-nav-btn:hover {
+    background: rgba(0, 0, 0, 0.06);
     color: var(--text-primary);
+}
+
+body.dark-mode .browser-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+}
+
+/* Omnibox URL Bar */
+.browser-omnibox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 5px 14px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    flex: 1;
+    max-width: 460px;
+}
+
+body.dark-mode .browser-omnibox {
+    background: #0f0f11;
+    border-color: rgba(255, 255, 255, 0.08);
+    color: #a0a0a5;
+}
+
+.omnibox-lock {
+    color: #27c93f;
+    display: inline-flex;
+    align-items: center;
+}
+
+.omnibox-url {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.browser-toolbar-meta {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.browser-meta-pill {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--accent);
+    background: rgba(184, 91, 53, 0.08);
+    border: 1px solid rgba(184, 91, 53, 0.2);
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* Browser Viewport containing the active lab panels */
+.browser-viewport {
+    padding: 32px 28px 36px 28px;
+    background: var(--surface-cream);
+}
+
+body.dark-mode .browser-viewport {
+    background: #141416;
+}
+
+/* ─── Atelier Topic Cards Gallery ─── */
+.atelier-gallery-section {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.atelier-gallery-header {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 12px;
+}
+
+.atelier-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 22px;
+    margin-bottom: 40px;
+}
+
+.topic-card {
+    background: var(--surface-cream);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+body.dark-mode .topic-card {
+    background: #18181c;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.topic-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease-out;
+}
+
+.topic-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-hover);
+}
+
+.topic-card:hover::before {
+    transform: scaleX(1);
+}
+
+.topic-card-top {
+    margin-bottom: 16px;
+}
+
+.topic-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.topic-card-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    padding: 2px 7px;
+    background: rgba(184, 91, 53, 0.08);
+    border: 1px solid rgba(184, 91, 53, 0.2);
+    border-radius: 2px;
+}
+
+.topic-card-cat {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.topic-card-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+    margin-bottom: 8px;
+}
+
+.topic-card-desc {
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+}
+
+.topic-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.topic-tag {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    background: var(--surface-recessed);
+    color: var(--text-secondary);
+    padding: 2px 7px;
+    border-radius: 2px;
+    border: 1px solid var(--border-subtle);
+}
+
+.topic-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    border-top: 1px dashed var(--border-subtle);
+    padding-top: 14px;
+}
+
+.topic-card-btn {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 7px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.topic-card-btn.primary {
+    background: var(--accent);
+    color: #ffffff;
+    border: 1px solid var(--accent);
+}
+
+.topic-card-btn.primary:hover {
+    background: var(--accent-hover);
     transform: translateY(-1px);
 }
 
-.lab-tab-btn.active {
-    background: var(--surface-deep);
-    color: var(--text-inverse);
-    border-color: var(--surface-deep);
-    box-shadow: var(--shadow-paper);
+.topic-card-btn.secondary {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
 }
 
-.lab-tab-btn.active .tab-num {
-    color: var(--accent-soft);
-}
-
-body.dark-mode .lab-tab-btn.active {
-    background: var(--accent);
-    color: #ffffff;
+.topic-card-btn.secondary:hover {
     border-color: var(--accent);
+    color: var(--accent);
 }
 
-body.dark-mode .lab-tab-btn.active .tab-num {
-    color: #ffffff;
+@media (max-width: 768px) {
+    .browser-toolbar-meta {
+        display: none;
+    }
+    .browser-omnibox {
+        max-width: 100%;
+    }
+    .browser-viewport {
+        padding: 20px 14px 28px 14px;
+    }
+    .editorial-article {
+        padding: 22px 18px;
+    }
+    .interactive-bench {
+        padding: 20px 16px;
+    }
+    .atelier-cards-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Panel Layout: Grid of Article + Interactive Bench */

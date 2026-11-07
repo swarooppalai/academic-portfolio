@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     onScroll();
 
     // ─── Active nav link on scroll ───
-    const isAtelierPage = window.location.pathname.endsWith('atelier.html') || window.location.pathname.endsWith('/atelier');
+    const isAtelierPage = window.location.pathname.includes('atelier');
     if (!isAtelierPage) {
         const sections = document.querySelectorAll('.section, #hero');
         const navAnchors = document.querySelectorAll('.nav-links a');

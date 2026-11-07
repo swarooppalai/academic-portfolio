@@ -66,39 +66,74 @@
 <main id="labContent" class="section" style="padding-top: 10px;">
     <div class="container">
 
-        <!-- Sub-Navigation Tabs -->
-        <nav class="lab-nav" aria-label="Interactive Physics Topics">
-            <ul class="lab-tabs" role="tablist">
-                <li role="presentation">
-                    <button class="lab-tab-btn active" role="tab" aria-selected="true" data-tab="tab-bench" id="btn-tab-bench" aria-controls="tab-bench">
-                        <span class="tab-num">01</span> Optical Bench &amp; Beam Walking
+        <!-- ─── Interactive Browser Workstation ─── -->
+        <div class="browser-window" id="atelierWorkbench">
+            <!-- Browser Header & Tab Strip -->
+            <div class="browser-header">
+                <div class="browser-controls" aria-hidden="true">
+                    <span class="control-dot close-dot" title="Close"></span>
+                    <span class="control-dot min-dot" title="Minimize"></span>
+                    <span class="control-dot max-dot" title="Maximize"></span>
+                </div>
+                
+                <div class="browser-tabs-track" role="tablist" aria-label="Atelier Physics Workbenches">
+                    <button class="browser-tab active" role="tab" aria-selected="true" data-tab="tab-bench" id="btn-tab-bench" aria-controls="tab-bench">
+                        <span class="browser-tab-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></span>
+                        <span class="browser-tab-title">01 Beam Walking</span>
+                        <span class="browser-tab-close" aria-hidden="true">&times;</span>
                     </button>
-                </li>
-                <li role="presentation">
-                    <button class="lab-tab-btn" role="tab" aria-selected="false" data-tab="tab-exciton" id="btn-tab-exciton" aria-controls="tab-exciton">
-                        <span class="tab-num">02</span> 2D Excitons &amp; AFM Ironing
+                    <button class="browser-tab" role="tab" aria-selected="false" data-tab="tab-exciton" id="btn-tab-exciton" aria-controls="tab-exciton">
+                        <span class="browser-tab-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 2 8.5 2 15.5 12 22 22 15.5 22 8.5 12 2"/></svg></span>
+                        <span class="browser-tab-title">02 2D Excitons</span>
+                        <span class="browser-tab-close" aria-hidden="true">&times;</span>
                     </button>
-                </li>
-                <li role="presentation">
-                    <button class="lab-tab-btn" role="tab" aria-selected="false" data-tab="tab-nv" id="btn-tab-nv" aria-controls="tab-nv">
-                        <span class="tab-num">03</span> NV Centers &amp; ODMR
+                    <button class="browser-tab" role="tab" aria-selected="false" data-tab="tab-nv" id="btn-tab-nv" aria-controls="tab-nv">
+                        <span class="browser-tab-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 3h12l4 6-10 13L2 9z"/></svg></span>
+                        <span class="browser-tab-title">03 NV Centers</span>
+                        <span class="browser-tab-close" aria-hidden="true">&times;</span>
                     </button>
-                </li>
-                <li role="presentation">
-                    <button class="lab-tab-btn" role="tab" aria-selected="false" data-tab="tab-nano" id="btn-tab-nano" aria-controls="tab-nano">
-                        <span class="tab-num">04</span> AFM Nanoxerography
+                    <button class="browser-tab" role="tab" aria-selected="false" data-tab="tab-nano" id="btn-tab-nano" aria-controls="tab-nano">
+                        <span class="browser-tab-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2v20M7 5l5-3 5 3M8 17l4 4 4-4"/></svg></span>
+                        <span class="browser-tab-title">04 AFM Nanox</span>
+                        <span class="browser-tab-close" aria-hidden="true">&times;</span>
                     </button>
-                </li>
-                <li role="presentation">
-                    <button class="lab-tab-btn" role="tab" aria-selected="false" data-tab="tab-g2" id="btn-tab-g2" aria-controls="tab-g2">
-                        <span class="tab-num">05</span> g⁽²⁾(τ) Single Photons
+                    <button class="browser-tab" role="tab" aria-selected="false" data-tab="tab-g2" id="btn-tab-g2" aria-controls="tab-g2">
+                        <span class="browser-tab-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 12c2.5-4 5-4 7.5 0s5 4 7.5 0 5-4 7-4"/></svg></span>
+                        <span class="browser-tab-title">05 Single Photons</span>
+                        <span class="browser-tab-close" aria-hidden="true">&times;</span>
                     </button>
-                </li>
-            </ul>
-        </nav>
+                </div>
+            </div>
 
-        <!-- Tab 01: Optical Bench (Two-Mirror Beam Walking) -->
-        <div class="lab-panel active" id="tab-bench" role="tabpanel" aria-labelledby="btn-tab-bench">
+            <!-- Browser Navigation / Omnibox Toolbar -->
+            <div class="browser-toolbar">
+                <div class="browser-nav-btns" aria-label="Workbench history">
+                    <button type="button" class="browser-nav-btn" id="browserPrevBtn" title="Previous Experiment">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <button type="button" class="browser-nav-btn" id="browserNextBtn" title="Next Experiment">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                    <button type="button" class="browser-nav-btn" id="browserReloadBtn" title="Reset Current Simulation">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                    </button>
+                </div>
+
+                <div class="browser-omnibox">
+                    <span class="omnibox-lock" title="Quantum Optics Workbench">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </span>
+                    <span class="omnibox-url" id="browserOmniboxUrl">atelier.cnrs.fr/01-beam-walking</span>
+                </div>
+
+                <div class="browser-toolbar-meta">
+                    <span class="browser-meta-pill">CNRS · CEMES · LPCNO · LNCMI</span>
+                </div>
+            </div>
+
+            <!-- Browser Viewport containing the 5 panels -->
+            <div class="browser-viewport">
+                <div class="lab-panel active" id="tab-bench" role="tabpanel" aria-labelledby="btn-tab-bench">
             <div class="lab-grid">
                 <!-- Left: Editorial Article -->
                 <article class="editorial-article">
@@ -192,7 +227,8 @@
         </div>
 
         <!-- Tab 02: 2D Excitons & AFM Ironing -->
-        <div class="lab-panel" id="tab-exciton" role="tabpanel" aria-labelledby="btn-tab-exciton">
+
+                <div class="lab-panel" id="tab-exciton" role="tabpanel" aria-labelledby="btn-tab-exciton">
             <div class="lab-grid">
                 <!-- Left: Editorial Article -->
                 <article class="editorial-article">
@@ -277,7 +313,8 @@
         </div>
 
         <!-- Tab 03: NV Centers in Diamond & ODMR -->
-        <div class="lab-panel" id="tab-nv" role="tabpanel" aria-labelledby="btn-tab-nv">
+
+                <div class="lab-panel" id="tab-nv" role="tabpanel" aria-labelledby="btn-tab-nv">
             <div class="lab-grid">
                 <!-- Left: Editorial Article -->
                 <article class="editorial-article">
@@ -359,7 +396,8 @@
         </div>
 
         <!-- Tab 04: AFM Nanoxerography & Directed Assembly -->
-        <div class="lab-panel" id="tab-nano" role="tabpanel" aria-labelledby="btn-tab-nano">
+
+                <div class="lab-panel" id="tab-nano" role="tabpanel" aria-labelledby="btn-tab-nano">
             <div class="lab-grid">
                 <!-- Left: Editorial Article -->
                 <article class="editorial-article">
@@ -450,7 +488,8 @@
         </div>
 
         <!-- Tab 05: g²(τ) Second-Order Autocorrelation -->
-        <div class="lab-panel" id="tab-g2" role="tabpanel" aria-labelledby="btn-tab-g2">
+
+                <div class="lab-panel" id="tab-g2" role="tabpanel" aria-labelledby="btn-tab-g2">
             <div class="lab-grid">
                 <!-- Left: Editorial Article -->
                 <article class="editorial-article">
@@ -550,10 +589,139 @@
                 </div>
             </div>
         </div>
+            </div>
+        </div>
+        <!-- ─── End Browser Window ─── -->
+
+        <!-- ─── Topic Directory / Cards Gallery ─── -->
+        <section class="atelier-gallery-section" id="topicDirectory">
+            <div class="atelier-gallery-header">
+                <div>
+                    <p class="section-label" style="margin-bottom: 4px;">TOPIC DIRECTORY · SEPARATE ARTICLES &amp; BENCHMARKS</p>
+                    <h2 class="editorial-title" style="font-size: 1.85rem; margin-bottom: 0;">Explore by Subject Area</h2>
+                </div>
+                <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-tertiary); margin: 0;">
+                    5 Interactive Topics &middot; Standalone Pages or In-Workbench
+                </p>
+            </div>
+
+            <div class="atelier-cards-grid">
+                <!-- Card 01 -->
+                <article class="topic-card">
+                    <div class="topic-card-top">
+                        <div class="topic-card-header">
+                            <span class="topic-card-num">01</span>
+                            <span class="topic-card-cat">Optics Instrumentation · Free-Space Alignment</span>
+                        </div>
+                        <h3 class="topic-card-title">The Art of Beam Walking: Decoupling Spatial and Angular Degrees of Freedom</h3>
+                        <p class="topic-card-desc">Dual-mirror steering algorithms through dual pinhole apertures to achieve collinear confocal alignment and mitigate cryostat drift at 4 Kelvin.</p>
+                        <div class="topic-card-tags">
+                            <span class="topic-tag">Beam Steering</span><span class="topic-tag">Dual Pinhole</span><span class="topic-tag">Cryogenics</span><span class="topic-tag">Confocal PL</span>
+                        </div>
+                    </div>
+                    <div class="topic-card-actions">
+                        <button type="button" class="topic-card-btn primary" data-switch-tab="tab-bench">
+                            <span>Launch in Workbench</span>
+                        </button>
+                        <a href="atelier-beam-walking.html" class="topic-card-btn secondary">
+                            <span>Dedicated Page &nearr;</span>
+                        </a>
+                    </div>
+                </article>
+                <!-- Card 02 -->
+                <article class="topic-card">
+                    <div class="topic-card-top">
+                        <div class="topic-card-header">
+                            <span class="topic-card-num">02</span>
+                            <span class="topic-card-cat">2D Materials · Moiré Superlattices</span>
+                        </div>
+                        <h3 class="topic-card-title">Strain Recovery & Exciton Dehybridization in Twisted TMDC Bilayers</h3>
+                        <p class="topic-card-desc">AFM mechanical ironing of MoSe₂/MoS₂ and WSe₂ bilayers to sweep interfacial nanobubbles, restoring intrinsic moiré exciton linewidths.</p>
+                        <div class="topic-card-tags">
+                            <span class="topic-tag">AFM Ironing</span><span class="topic-tag">MoSe₂/MoS₂</span><span class="topic-tag">Moiré Excitons</span><span class="topic-tag">Strain Relief</span>
+                        </div>
+                    </div>
+                    <div class="topic-card-actions">
+                        <button type="button" class="topic-card-btn primary" data-switch-tab="tab-exciton">
+                            <span>Launch in Workbench</span>
+                        </button>
+                        <a href="atelier-2d-excitons.html" class="topic-card-btn secondary">
+                            <span>Dedicated Page &nearr;</span>
+                        </a>
+                    </div>
+                </article>
+                <!-- Card 03 -->
+                <article class="topic-card">
+                    <div class="topic-card-top">
+                        <div class="topic-card-header">
+                            <span class="topic-card-num">03</span>
+                            <span class="topic-card-cat">Quantum Sensing · Solid-State Spins</span>
+                        </div>
+                        <h3 class="topic-card-title">Coherent Spin Readout: NV Centers & ODMR in Diamond</h3>
+                        <p class="topic-card-desc">Microwave spin manipulation at 2.87 GHz and optical readout of NV⁻ ground state triplet sublevels with Zeeman magnetic field splitting.</p>
+                        <div class="topic-card-tags">
+                            <span class="topic-tag">NV Centers</span><span class="topic-tag">ODMR</span><span class="topic-tag">Zeeman Shift</span><span class="topic-tag">2.87 GHz ESR</span>
+                        </div>
+                    </div>
+                    <div class="topic-card-actions">
+                        <button type="button" class="topic-card-btn primary" data-switch-tab="tab-nv">
+                            <span>Launch in Workbench</span>
+                        </button>
+                        <a href="atelier-nv-centers.html" class="topic-card-btn secondary">
+                            <span>Dedicated Page &nearr;</span>
+                        </a>
+                    </div>
+                </article>
+                <!-- Card 04 -->
+                <article class="topic-card">
+                    <div class="topic-card-top">
+                        <div class="topic-card-header">
+                            <span class="topic-card-num">04</span>
+                            <span class="topic-card-cat">Nanotechnology · Directed Assembly</span>
+                        </div>
+                        <h3 class="topic-card-title">Nanoscale Electrostatic Trapping: AFM Nanoxerography</h3>
+                        <p class="topic-card-desc">Biased conductive AFM tip patterning electrostatic charge templates on PMMA for deterministic positioning of single quantum emitters.</p>
+                        <div class="topic-card-tags">
+                            <span class="topic-tag">Nanoxerography</span><span class="topic-tag">AFM Lithography</span><span class="topic-tag">Charge Patterns</span><span class="topic-tag">Directed Assembly</span>
+                        </div>
+                    </div>
+                    <div class="topic-card-actions">
+                        <button type="button" class="topic-card-btn primary" data-switch-tab="tab-nano">
+                            <span>Launch in Workbench</span>
+                        </button>
+                        <a href="atelier-nanoxerography.html" class="topic-card-btn secondary">
+                            <span>Dedicated Page &nearr;</span>
+                        </a>
+                    </div>
+                </article>
+                <!-- Card 05 -->
+                <article class="topic-card">
+                    <div class="topic-card-top">
+                        <div class="topic-card-header">
+                            <span class="topic-card-num">05</span>
+                            <span class="topic-card-cat">Quantum Optics · Photon Statistics</span>
+                        </div>
+                        <h3 class="topic-card-title">HBT Interferometry: Verifying Single-Photon Antibunching</h3>
+                        <p class="topic-card-desc">Second-order photon autocorrelation function g⁽²⁾(τ) with g⁽²⁾(0) < 0.5 proving sub-Poissonian single-photon emission.</p>
+                        <div class="topic-card-tags">
+                            <span class="topic-tag">HBT Interferometer</span><span class="topic-tag">g²(τ) Antibunching</span><span class="topic-tag">Single Photons</span><span class="topic-tag">Quantum Emitter</span>
+                        </div>
+                    </div>
+                    <div class="topic-card-actions">
+                        <button type="button" class="topic-card-btn primary" data-switch-tab="tab-g2">
+                            <span>Launch in Workbench</span>
+                        </button>
+                        <a href="atelier-single-photons.html" class="topic-card-btn secondary">
+                            <span>Dedicated Page &nearr;</span>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <!-- ─── End Topic Directory ─── -->
 
     </div>
 </main>
-
 <!-- ─── Footer ─── -->
 <footer class="footer">
     <div class="container">
