@@ -1299,11 +1299,31 @@ body.dark-mode .lab-tab-btn.active .tab-num {
     margin-bottom: 6px;
     line-height: 1.5;
 }
+.pub-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
 .pub-journal {
     font-family: var(--font-mono);
     font-size: 0.75rem;
     color: var(--accent);
     font-weight: 500;
+}
+.pub-cite {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 1px 7px;
+    border-radius: 2px;
+    background: rgba(184, 91, 53, 0.09);
+    color: var(--accent);
+    border: 1px solid rgba(184, 91, 53, 0.25);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    display: inline-flex;
+    align-items: center;
 }
 
 /* ─── Education ─── */
