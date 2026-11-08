@@ -73,29 +73,29 @@
                         <div class="editorial-meta" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">Dr. Swaroop Kumar Palai · Single-Photon Emission Benchmarking</div>
                     </div>
                     <div class="editorial-body">
-                        <p class="editorial-dropcap">How can an experimentalist unequivocally prove that an emitter produces genuine quantum light rather than faint classical attenuation? The definitive experimental test is the second-order intensity correlation function, $g^{(2)}(\tau)$, measured using a <strong>Hanbury Brown–Twiss (HBT) interferometer</strong>.</p>
+                        <p class="editorial-dropcap">How can an experimentalist unequivocally prove that an emitter produces genuine quantum light rather than faint classical attenuation? The definitive experimental test is the second-order intensity correlation function, <i>g</i><sup>(2)</sup>(<i>τ</i>), measured using a <strong>Hanbury Brown–Twiss (HBT) interferometer</strong>.</p>
 
-                        <p>In an HBT setup, photoluminescence from a targeted nano-object is directed through a $50:50$ non-polarizing beam splitter onto two Single-Photon Avalanche Diodes (SPADs: Start and Stop channels). A Time-Correlated Single-Photon Counting (TCSPC) module records the histogram of arrival delay times $\tau = t_2 - t_1$.</p>
+                        <p>In an HBT setup, photoluminescence from a targeted nano-object is directed through a 50:50 non-polarizing beam splitter onto two Single-Photon Avalanche Diodes (SPADs: Start and Stop channels). A Time-Correlated Single-Photon Counting (TCSPC) module records the histogram of arrival delay times <i>τ</i> = <i>t</i><sub>2</sub> − <i>t</i><sub>1</sub>.</p>
 
                         <div class="editorial-formula">
-                            $$g^{(2)}(\tau) = 1 - \left(1 - g^{(2)}(0)\right) e^{-|\tau|/\tau_1}, \quad g^{(2)}(0) = 1 - \frac{1}{N} \rho^2$$
-                            <span class="editorial-formula-desc">Second-order correlation dip for $N$ identical quantum emitters with background purity $\rho = S/(S+B)$</span>
+                            <div class="formula-text"><i>g</i><sup>(2)</sup>(<i>τ</i>) = 1 − [1 − <i>g</i><sup>(2)</sup>(0)] <i>e</i><sup>−|<i>τ</i>|/<i>τ</i><sub>1</sub></sup>, &nbsp;&nbsp; <i>g</i><sup>(2)</sup>(0) = 1 − (1/<i>N</i>)<i>ρ</i><sup>2</sup></div>
+                            <span class="editorial-formula-desc">Second-order correlation dip for <i>N</i> identical quantum emitters with background purity <i>ρ</i> = <i>S</i>/(<i>S</i> + <i>B</i>)</span>
                         </div>
 
-                        <p>For classical electromagnetic fields, the Cauchy-Schwarz inequality dictates that $g^{(2)}(0) \ge 1$ (coherent laser light yields $g^{(2)}(\tau) = 1$, whereas thermal light exhibits photon bunching $g^{(2)}(0) = 2$). However, a true two-level quantum emitter cannot radiate two photons at the same instant; following emission, it must be re-excited before emitting again. Consequently, the simultaneous coincidence probability at zero delay drops to zero:</p>
+                        <p>For classical electromagnetic fields, the Cauchy-Schwarz inequality dictates that <i>g</i><sup>(2)</sup>(0) ≥ 1 (coherent laser light yields <i>g</i><sup>(2)</sup>(<i>τ</i>) = 1, whereas thermal light exhibits photon bunching <i>g</i><sup>(2)</sup>(0) = 2). However, a true two-level quantum emitter cannot radiate two photons at the same instant; following emission, it must be re-excited before emitting again. Consequently, the simultaneous coincidence probability at zero delay drops to zero:</p>
 
                         <p style="text-align: center; font-family: var(--font-mono); font-weight: 600; color: var(--accent); margin: 16px 0;">
                             g⁽²⁾(0) &lt; 0.5 &implies; Unambiguous Single-Photon Source (Antibunched)
                         </p>
 
-                        <p>When multiple emitters ($N \ge 2$) reside within the confocal volume, $g^{(2)}(0)$ scales as $1 - 1/N$, exceeding the quantum threshold. Real-world background luminescence ($S/B$) and detector timing jitter convolve the dip, making nanoscale engineering crucial for maximizing quantum purity.</p>
+                        <p>When multiple emitters (<i>N</i> ≥ 2) reside within the confocal volume, <i>g</i><sup>(2)</sup>(0) scales as 1 − 1/<i>N</i>, exceeding the quantum threshold. Real-world background luminescence (<i>S</i>/<i>B</i>) and detector timing jitter convolve the dip, making nanoscale engineering crucial for maximizing quantum purity.</p>
 
                         <div class="editorial-callout">
                             <div class="editorial-callout-title">
                                 <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
                                 Purcell Enhancement &amp; Background Suppression
                             </div>
-                            <p>Coupling deterministically placed single nanodiamonds to optical metasurfaces accelerates the spontaneous emission rate via the Purcell effect, shortening excited state lifetimes down to &lt;5 ns and elevating signal-to-noise ratios to yield record room-temperature antibunching dips ($g^{(2)}(0) &lt; 0.12$).</p>
+                            <p>Coupling deterministically placed single nanodiamonds to optical metasurfaces accelerates the spontaneous emission rate via the Purcell effect, shortening excited state lifetimes down to &lt;5 ns and elevating signal-to-noise ratios to yield record room-temperature antibunching dips (<i>g</i><sup>(2)</sup>(0) &lt; 0.12).</p>
                         </div>
                     </div>
                 </article>
